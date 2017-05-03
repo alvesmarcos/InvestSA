@@ -1,0 +1,16 @@
+page-menu {
+  ion-icon {
+    vertical-align: middle;
+    color: #757575;
+  }
+  ion-label {
+    padding-top: 3px;
+    color: #000;
+  }
+  .menu-header {
+    background-color: color($colors, accent);
+    height: 170px;
+    margin-top: -20px;
+    margin-bottom: 8px;
+  }
+}
