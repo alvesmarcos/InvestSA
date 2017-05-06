@@ -1,10 +1,9 @@
 <ion-content>
 
-    <div padding id="cloud-layer">
-
+    <div padding>
         <ion-row>
             <ion-col>
-                <img src="assets/image/logoSA.png" />
+                <img class="logo" src="assets/image/logoSA.png" />
             </ion-col>
         </ion-row>
 
@@ -32,21 +31,19 @@
 
         <ion-row>
             <ion-col>
-                <button ion-button class="login-button">Login</button>
-                <ion-label class="forgot-password">Esqueçeu a senha?</ion-label>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col>
-                <button ion-button class="facebook-button"><img src="assets/image/face.png" class="facebook-image"> Login com Facebook</button>
+                <button style="margin-bottom: 10px;" ion-button color="dark" block outline>Login</button>
+                <button color="facebook" block ion-button icon-left>
+                  <ion-icon name="logo-facebook"></ion-icon>
+                  Logar com facebook
+                </button>
+                <button ion-button color="dark-gray" clear class="forgot-password">Esqueceu a senha?</button>
             </ion-col>
         </ion-row>
 
         <ion-row>
             <ion-col>
                 <hr>
-                <ion-label class="new-account">Criar Conta</ion-label>
+                <button ion-button color="acent" clear class="new-account" clear>Criar Conta</button>
             </ion-col>
         </ion-row>
 
