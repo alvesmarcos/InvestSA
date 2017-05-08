@@ -30,7 +30,7 @@ export class MyApp {
       {title: 'Atendimento', component: null, icon: 'people', active: false},
       {title: 'Configurações', component: null, icon: 'settings', active: false},
       {title: 'Sobre', component: null, icon: 'information-circle', active: false},
-      {title: 'Sair', component: null, icon: 'exit', active: false}
+      {title: 'Sair', component: LoginPage, icon: 'exit', active: false}
     ];
   }
 
@@ -47,4 +47,3 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 }
-

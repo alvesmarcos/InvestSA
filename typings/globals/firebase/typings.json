@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "/home/matheus/workspace/GitHub/InvestSA/node_modules/firebase/firebase.d.ts",
+    "raw": "file:node_modules/firebase/firebase.d.ts",
+    "typings": "/home/matheus/workspace/GitHub/InvestSA/node_modules/firebase/firebase.d.ts"
+  }
+}
