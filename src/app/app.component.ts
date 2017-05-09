@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
-import { LoginPage } from '../pages/login-page/login-page';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +14,7 @@ import { LoginPage } from '../pages/login-page/login-page';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
@@ -29,8 +29,7 @@ export class MyApp {
       {title: 'Análises', component: AnalysisPage, icon: 'analytics', active: false},
       {title: 'Atendimento', component: null, icon: 'people', active: false},
       {title: 'Configurações', component: null, icon: 'settings', active: false},
-      {title: 'Sobre', component: null, icon: 'information-circle', active: false},
-      {title: 'Sair', component: LoginPage, icon: 'exit', active: false}
+      {title: 'Sobre', component: null, icon: 'information-circle', active: false}
     ];
   }
 
@@ -45,5 +44,9 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    // call here your method
   }
 }

@@ -9,8 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
-import { LoginPage } from '../pages/login-page/login-page';
-import { LoginProvider } from '../providers/login-provider'
+import { LoginPage } from '../pages/login/login';
+import { LoginService } from '../providers/login.service'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAOeyA8mbblOh2AV_tZp7ykzoP26kjHry4",
@@ -45,7 +45,7 @@ const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    LoginProvider,
+    LoginService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

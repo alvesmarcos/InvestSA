@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { Credential } from '../../model/credential';
-import { LoginProvider } from '../../providers/login-provider';
+import { LoginService } from '../../providers/login.service';
 import { MyInvestimentsPage } from '../my-investiments/my-investiments';
 
-@IonicPage()
 @Component({
-  selector: 'page-login-page',
-  templateUrl: 'login-page.html',
+  selector: 'page-login',
+  templateUrl: 'login.html',
 })
 export class LoginPage {
 
@@ -16,23 +15,23 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public loginProvider: LoginProvider) {
+              public loginService: LoginService) {
 
       this.credential = new Credential();
   }
 
   ionViewDidLoad() {
     // Verifica se o usuario ja esta logado.
-    this.loginProvider.loginSuccessEventEmitter.subscribe(
+    this.loginService.loginSuccessEventEmitter.subscribe(
       user => this.navCtrl.setRoot(MyInvestimentsPage));
 
-    this.loginProvider.loginFailEventEmitter.subscribe(
+    this.loginService.loginFailEventEmitter.subscribe(
       error => console.log(error)
     );
   }
 
   loginWithCredential(){
-    this.loginProvider.loginWithCredential(this.credential);
+    this.loginService.loginWithCredential(this.credential);
   }
 
 }
