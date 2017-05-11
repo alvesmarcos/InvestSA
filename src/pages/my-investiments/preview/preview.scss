@@ -1,0 +1,15 @@
+page-preview {
+  .content-preview {
+    height: 360px;
+    width: 279px;
+    background-color: white;
+    margin: 30px auto 0; 
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);  
+  }
+  .background {
+    background: color($colors, light);
+  }
+  ion-item {
+    margin-top: -4px;
+  }
+}

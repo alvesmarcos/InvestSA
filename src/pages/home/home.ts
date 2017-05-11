@@ -19,12 +19,10 @@ export class HomePage {
 
 	ionViewDidLoad(){
 		this.barChart = new Chart(this.barCanvas.nativeElement, {
-
 			type: 'bar',
 			data: {
 				labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
 				datasets: [{
-					label: '# of Votes',
 					data: [12, 19, 3, 5, 2, 3],
 					backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
@@ -46,24 +44,33 @@ export class HomePage {
 				}]
 			},
 			options: {
+        legend: {
+          display: false
+        },
 				scales: {
+          xAxes: [{
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+            }
+					}],
 					yAxes: [{
 						ticks: {
 							beginAtZero:true
-						}
+						},
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+            }
 					}]
 				}
 			}
 
 		});
 
-		this.donutChart = new Chart(this.donutCanvas.nativeElement, {
- 
+		this.donutChart = new Chart(this.donutCanvas.nativeElement, { 
             type: 'doughnut',
             data: {
                 labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
                 datasets: [{
-                    label: '# of Votes',
                     data: [12, 19, 3, 5, 2, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

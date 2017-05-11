@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
+import { PreviewPage } from '../pages/my-investiments/preview/preview';
 import { LoginPage } from '../pages/login/login';
 import { LoginService } from '../providers/login.service'
 
@@ -28,7 +29,8 @@ const firebaseConfig = {
     HomePage,
     AnalysisPage,
     MyInvestimentsPage,
-    LoginPage
+    LoginPage,
+    PreviewPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ const firebaseConfig = {
     HomePage,
     AnalysisPage,
     MyInvestimentsPage,
-    LoginPage
+    LoginPage,
+    PreviewPage
   ],
   providers: [
     StatusBar,

@@ -13,7 +13,16 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="background">
+  <ion-card *ngFor="let invest of investiments" (click)="showDetailsInvestiment()">
+    <ion-card-content no-padding>
+      <ion-item>
+        <p>Vencimento: {{invest.expirationDate}}</p>
+        <h1>{{invest.title}}</h1>
+        <p>Total de investimento nesse título R$ {{invest.valueTitle.toLocaleString('pt-BR')}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
   <ion-fab right bottom>
     <button ion-fab color="accent"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
