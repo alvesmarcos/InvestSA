@@ -16,11 +16,13 @@ export class LoginService {
 
   loginSuccessEventEmitter:EventEmitter<any>;
   loginFailEventEmitter:EventEmitter<any>;
+  logoutEventEmitter:EventEmitter<any>;
 
   constructor(public toastCtrl: ToastController) {
 
     this.loginSuccessEventEmitter = new EventEmitter();
     this.loginFailEventEmitter = new EventEmitter();
+    this.logoutEventEmitter = new EventEmitter();
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -36,15 +38,18 @@ export class LoginService {
   loginWithCredential(credential:Credential){
     firebase.auth().signInWithEmailAndPassword(credential.email, credential.password)
       .then(result => {
-        //this.presentToast('Sucesso!');
-        console.log(result);
         this.callbackSuccessLogin(result);
       })
       .catch(error => {
         this.presentToast(error.message);
-        console.log(error.message);
         this.callbackFailLogin(error);
       });
+  }
+
+  logout(){
+    firebase.auth().signOut()
+      .then(() => this.logoutEventEmitter.emit(true))
+      .catch(error => this.logoutEventEmitter.emit(error.message));
   }
 
   private callbackSuccessLogin(response){

@@ -8,16 +8,18 @@ import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
 import { LoginPage } from '../pages/login/login';
 
+import { LoginService } from '../providers/login.service'
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
     this.initializeApp();
 
     this.pages = [
@@ -40,6 +42,17 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.loginService.logoutEventEmitter.subscribe(
+      response => {        
+        if (response === true){
+          this.nav.setRoot(LoginPage);
+        }
+        else {
+          console.log(response);
+        }
+      }
+    );
   }
 
   openPage(page) {
@@ -47,6 +60,6 @@ export class MyApp {
   }
 
   logout() {
-    // call here your method
+    this.loginService.logout();
   }
 }

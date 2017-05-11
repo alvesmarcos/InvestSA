@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Credential } from '../../model/credential';
 import { LoginService } from '../../providers/login.service';
-import { MyInvestimentsPage } from '../my-investiments/my-investiments';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-login',
@@ -23,7 +23,7 @@ export class LoginPage {
   ionViewDidLoad() {
     // Verifica se o usuario ja esta logado.
     this.loginService.loginSuccessEventEmitter.subscribe(
-      user => this.navCtrl.setRoot(MyInvestimentsPage));
+      user => this.navCtrl.setRoot(HomePage));
 
     this.loginService.loginFailEventEmitter.subscribe(
       error => console.log(error)
