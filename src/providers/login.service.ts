@@ -30,6 +30,7 @@ export class LoginService {
         this.callbackSuccessLogin(user);
       } else {
         // No user is signed in.
+        this.logoutEventEmitter.emit(true);
       }
     });
 
@@ -44,6 +45,15 @@ export class LoginService {
         this.presentToast(error.message);
         this.callbackFailLogin(error);
       });
+  }
+
+  signUp(credential:Credential){
+    firebase.auth().createUserWithEmailAndPassword(credential.email, credential.password)
+      .then(result => {
+        //sucesso! Registrar usuario no RealTimeDB
+        firebase.database().ref('users/').child(result.uid).set(result.email);
+      })
+      .catch(error => this.presentToast(error.message));
   }
 
   logout(){
