@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
-import { Credential } from '../../model/credential'
-import { LoginService } from '../../providers/login.service'
-import { HomePage } from '../home/home'
+import { Credential } from '../../model/credential';
+import { User } from '../../model/user';
+import { HomePage } from '../home/home';
+
+import firebase from 'firebase';
 
 /**
  * Generated class for the Register page.
@@ -19,23 +21,38 @@ import { HomePage } from '../home/home'
 export class RegisterPage {
 
   credential:Credential;
+  user:User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loginService:LoginService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
     this.credential = new Credential();
+    this.user = new User();
   }
 
-  ionViewDidLoad() {
-    // Verifica se o usuario ja esta logado.
-    this.loginService.loginSuccessEventEmitter.subscribe(
-      user => this.navCtrl.setRoot(HomePage));
-
-    this.loginService.loginFailEventEmitter.subscribe(
-      error => console.log(error)
-    );
-  }
+  ionViewDidLoad() {}
 
   registerUser(){
-    this.loginService.signUp(this.credential);
+    firebase.auth().createUserWithEmailAndPassword(this.credential.email, this.credential.password)
+      .then(result => {
+        //sucesso! Registrar usuario no RealTimeDB
+        console.log(this.user);
+        firebase.database().ref('users/').child(result.uid).set(this.user);
+        this.navCtrl.setRoot(HomePage);
+      })
+      .catch(error => {
+        console.log(error.message)
+      });
+
+      //Apagar dados - Aellison Tips
+      this.credential = null;
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'middle'
+    });
+    toast.present();
   }
 
 }

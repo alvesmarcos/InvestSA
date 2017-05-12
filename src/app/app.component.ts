@@ -8,7 +8,7 @@ import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
 import { LoginPage } from '../pages/login/login';
 
-import { LoginService } from '../providers/login.service'
+import firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +19,7 @@ export class MyApp {
   rootPage:any = LoginPage;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     this.pages = [
@@ -34,16 +34,7 @@ export class MyApp {
       {title: 'Sobre', component: null, icon: 'information-circle', active: false}
     ];
 
-    this.loginService.logoutEventEmitter.subscribe(
-      response => {
-        if (response === true){
-          this.nav.setRoot(LoginPage);
-        }
-        else {
-          console.log(response);
-        }
-      }
-    );
+
   }
 
   initializeApp() {
@@ -60,7 +51,8 @@ export class MyApp {
   }
 
   logout() {
-    this.loginService.logout();
-    this.nav.setRoot(LoginPage);
+    firebase.auth().signOut()
+      .then(() => this.nav.setRoot(LoginPage))
+      .catch(error => console.log(error.message));
   }
 }
