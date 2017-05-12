@@ -16,7 +16,7 @@ import { LoginService } from '../providers/login.service'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
@@ -42,7 +42,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-
+    /*
     this.loginService.logoutEventEmitter.subscribe(
       response => {        
         if (response === true){
@@ -53,6 +53,7 @@ export class MyApp {
         }
       }
     );
+    */
   }
 
   openPage(page) {
