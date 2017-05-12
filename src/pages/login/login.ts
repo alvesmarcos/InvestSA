@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Credential } from '../../model/credential';
 import { LoginService } from '../../providers/login.service';
 import { HomePage } from '../home/home';
+import { RegisterPage } from '../register/register'
 
 @Component({
   selector: 'page-login',
@@ -23,7 +24,10 @@ export class LoginPage {
   ionViewDidLoad() {
     // Verifica se o usuario ja esta logado.
     this.loginService.loginSuccessEventEmitter.subscribe(
-      user => this.navCtrl.setRoot(HomePage));
+      user => {
+        this.navCtrl.push(HomePage);
+        console.log('login.ts success emitter');
+      });
 
     this.loginService.loginFailEventEmitter.subscribe(
       error => console.log(error)
@@ -32,6 +36,10 @@ export class LoginPage {
 
   loginWithCredential(){
     this.loginService.loginWithCredential(this.credential);
+  }
+
+  toRegisterPage(){
+    this.navCtrl.push(RegisterPage);
   }
 
 }

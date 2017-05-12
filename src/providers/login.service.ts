@@ -27,19 +27,21 @@ export class LoginService {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // Usuario esta Logado
+        console.log('onAuthStateChanged user');
         this.callbackSuccessLogin(user);
       } else {
         // No user is signed in.
         this.logoutEventEmitter.emit(true);
       }
     });
-
   }
+
 
   loginWithCredential(credential:Credential){
     firebase.auth().signInWithEmailAndPassword(credential.email, credential.password)
       .then(result => {
-        this.callbackSuccessLogin(result);
+        console.log('Success');
+        //this.callbackSuccessLogin(result);
       })
       .catch(error => {
         this.presentToast(error.message);
@@ -47,13 +49,17 @@ export class LoginService {
       });
   }
 
+// segurança senha
+
   signUp(credential:Credential){
     firebase.auth().createUserWithEmailAndPassword(credential.email, credential.password)
       .then(result => {
         //sucesso! Registrar usuario no RealTimeDB
         firebase.database().ref('users/').child(result.uid).set(result.email);
       })
-      .catch(error => this.presentToast(error.message));
+      .catch(error => {
+        this.presentToast(error.message)
+      });
   }
 
   logout(){
@@ -63,6 +69,7 @@ export class LoginService {
   }
 
   private callbackSuccessLogin(response){
+    console.log('callbackSuccessLogin')
     this.loginSuccessEventEmitter.emit(response.user);
   }
 
@@ -73,7 +80,8 @@ export class LoginService {
   private presentToast(message) {
     let toast = this.toastCtrl.create({
       message: message,
-      duration: 3000
+      duration: 3000,
+      position: 'middle'
     });
     toast.present();
   }

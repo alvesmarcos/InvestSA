@@ -31,10 +31,10 @@
 
         <ion-row>
             <ion-col>
-                <button style="margin-bottom: 10px;" ion-button color="dark" block outline (click)='loginWithCredential()'>Login</button>
+                <button style="margin-bottom: 10px;" ion-button color="dark" block outline (click)='loginWithCredential()'>Entrar</button>
                 <button color="facebook" block ion-button icon-left>
                   <ion-icon name="logo-facebook"></ion-icon>
-                  Logar com facebook
+                  Entrar com facebook
                 </button>
                 <button ion-button color="dark-gray" clear class="forgot-password">Esqueceu a senha?</button>
             </ion-col>
@@ -43,7 +43,7 @@
         <ion-row>
             <ion-col>
                 <hr>
-                <button ion-button color="acent" clear class="new-account" clear>Criar Conta</button>
+                <button ion-button color="acent" clear class="new-account" (click)='toRegisterPage()' clear>Criar Conta</button>
             </ion-col>
         </ion-row>
 

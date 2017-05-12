@@ -12,6 +12,7 @@ import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
 import { PreviewPage } from '../pages/my-investiments/preview/preview';
 import { LoginPage } from '../pages/login/login';
 import { LoginService } from '../providers/login.service'
+import { RegisterPage } from '../pages/register/register'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAOeyA8mbblOh2AV_tZp7ykzoP26kjHry4",
@@ -30,6 +31,7 @@ const firebaseConfig = {
     AnalysisPage,
     MyInvestimentsPage,
     LoginPage,
+    RegisterPage,
     PreviewPage
   ],
   imports: [
@@ -43,6 +45,7 @@ const firebaseConfig = {
     AnalysisPage,
     MyInvestimentsPage,
     LoginPage,
+    RegisterPage,
     PreviewPage
   ],
   providers: [

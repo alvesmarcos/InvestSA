@@ -16,7 +16,7 @@ import { LoginService } from '../providers/login.service'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
@@ -33,6 +33,17 @@ export class MyApp {
       {title: 'Configurações', component: null, icon: 'settings', active: false},
       {title: 'Sobre', component: null, icon: 'information-circle', active: false}
     ];
+
+    this.loginService.logoutEventEmitter.subscribe(
+      response => {
+        if (response === true){
+          this.nav.setRoot(LoginPage);
+        }
+        else {
+          console.log(response);
+        }
+      }
+    );
   }
 
   initializeApp() {
@@ -42,18 +53,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    /*
-    this.loginService.logoutEventEmitter.subscribe(
-      response => {        
-        if (response === true){
-          this.nav.setRoot(LoginPage);
-        }
-        else {
-          console.log(response);
-        }
-      }
-    );
-    */
   }
 
   openPage(page) {
@@ -62,5 +61,6 @@ export class MyApp {
 
   logout() {
     this.loginService.logout();
+    this.nav.setRoot(LoginPage);
   }
 }
