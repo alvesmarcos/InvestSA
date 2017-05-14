@@ -12,18 +12,93 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="background">
+<ion-content class="background" onscroll="true">
   <ion-card>
-    <ion-card-header>Rentabilidade Anual</ion-card-header>
     <ion-card-content>
-      <canvas #barCanvas></canvas>
+      <ion-grid no-padding>
+        <ion-row style="margin-bottom: 10px;">
+          <ion-col col-3>
+            <h2>Índice</h2>
+          </ion-col>
+          <ion-col col-5>
+            <div class="line-index">
+              <h2>Sem. Anterior</h2>  
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="line-index">
+              <h2>Sem. Atual</h2>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <p>IPCA</p>
+          </ion-col>
+          <ion-col col-5>
+            <div class="line-index">
+              <ion-icon color="danger" name="ios-arrow-down"></ion-icon>  
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="line-index">
+              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <p>Selic</p>
+          </ion-col>
+          <ion-col col-5>
+            <div class="line-index">
+              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="line-index">
+              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <p>PIB</p>
+          </ion-col>
+          <ion-col col-5>
+            <div class="line-index">
+              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="line-index">
+              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <p>Câmbio</p>
+          </ion-col>
+          <ion-col col-5>
+            <div class="line-index">
+              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="line-index">
+              <ion-icon color="danger" name="ios-arrow-down"></ion-icon>  
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
     <ion-card-header>Rentabilidade Anual</ion-card-header>
     <ion-card-content>
-      <canvas #donutCanvas></canvas>
+      <canvas #barCanvas></canvas>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -2,7 +2,20 @@ page-home {
   ion-buttons ion-icon {
     font-size: 25px;
   }
+
+  ion-grid ion-icon {
+    font-size: 25px;
+  }
+
   .background {
     background-color: color($colors, light);
   }
+
+  canvas {
+    margin-top: 10px;
+  }
+
+  .line-index {
+    text-align: center;
+  } 
 }
