@@ -12,34 +12,39 @@ import firebase from 'firebase';
 export class LoginPage {
 
   credential:Credential;
+  flag:boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController) {
 
       this.credential = new Credential();
+      this.flag = true;
 
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          // Usuario esta Logado
-          console.log('onAuthStateChanged user');
-          this.navCtrl.setRoot(HomePage);
-        } else {
-          // No user is signed in.
-          console.log("usuario nao logado");
-        }
-      });
+
   }
 
   ionViewDidLoad() {
     // Verifica se o usuario ja esta logado.
+    firebase.auth().onAuthStateChanged(user => {
+      if (user && this.flag) {
+        // Usuario esta Logado
+        console.log('onAuthStateChanged user');
+        this.navCtrl.setRoot(HomePage);
+        this.flag = false;
 
+
+      } else {
+        // No user is signed in.
+        //console.log("usuario nao logado");
+      }
+    });
   }
 
   loginWithCredential(){
     firebase.auth().signInWithEmailAndPassword(this.credential.email, this.credential.password)
       .then(result => {
-        this.navCtrl.setRoot(HomePage);
+        this.flag = true;
       })
       .catch(error => {
         this.presentToast(error.message);
