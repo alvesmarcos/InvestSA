@@ -12,19 +12,19 @@ export class  MyInvestimentsPage {
   investiments: Array<Investiment>;  
   
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    this.investiments = [{title: 'Tesouro Prefixado', expirationDate: '15/05/2019', quantityPurchased: 15,
-                         valueTitle: 0.58, administrationFee: 10, purchaseRate: 20, purchaseDate: '25/06/2016', 
-                         paid: 0, goal: 'Não definido'},
-                         {title: 'Tesouro Selic', expirationDate: '15/05/2018', quantityPurchased: 15,
-                         valueTitle: 3.51, administrationFee: 10, purchaseRate: 20, purchaseDate: '01/06/2016', 
-                         paid: 0, goal: 'Não definido'},
-                         {title: 'Tesouro IPCA', expirationDate: '12/07/2017', quantityPurchased: 15,
-                         valueTitle: 1.57, administrationFee: 10, purchaseRate: 20, purchaseDate: '11/06/2015', 
-                         paid: 0, goal: 'Não definido'}];
+    this.investiments = [{title: 'Tesouro Prefixado', expirationDate: '15/05/2019', quantityPurchased: 3,
+                         valueTitle: 0.58, administrationFee: 0.02, purchaseRate: 2.23, purchaseDate: '25/06/2016', 
+                         paid: 10.20},
+                         {title: 'Tesouro Selic', expirationDate: '15/05/2018', quantityPurchased: 1,
+                         valueTitle: 3.51, administrationFee: 1, purchaseRate: 4.32, purchaseDate: '01/06/2016', 
+                         paid: 9.15},
+                         {title: 'Tesouro IPCA', expirationDate: '12/07/2017', quantityPurchased: 6,
+                         valueTitle: 1.57, administrationFee: 0.21, purchaseRate: 4.10, purchaseDate: '11/06/2015', 
+                         paid: 7.35}];
   }
 
-  showDetailsInvestiment() {
-    let modal = this.modalCtrl.create(PreviewPage);
+  showDetailsInvestiment(investiment: Investiment) {
+    let modal = this.modalCtrl.create(PreviewPage, {investiment: investiment});
     modal.present();
   }
 }

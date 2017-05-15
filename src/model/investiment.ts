@@ -7,5 +7,4 @@ export class Investiment {
   purchaseRate: number;
   purchaseDate: string;
   paid: number;
-  goal: string;
 }
