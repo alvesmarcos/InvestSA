@@ -1,0 +1,141 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Atendimento</ion-title>
+  </ion-navbar>
+</ion-header>
+<!--
+<ion-content padding>
+  <h2>Cadastro</h2>
+  <form [formGroup]="cadastro" (ngSubmit)="postDados()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nome Completo</ion-label>
+        <ion-input type="text" name="nome" formControlName="nome" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Telefone</ion-label>
+        <ion-input type="number" name="telefone" formControlName="telefone" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" name="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Ocupação</ion-label>
+        <ion-input type="text" name="ocupacao" formControlName="ocupacao"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button [disabled]="cadastro.invalid" ion-button full block color="danger">Enviar</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
+-->
+
+
+<ion-content padding>
+  <h2>Cadastro</h2>
+  <form #FormCadastro="ngForm" (ngSubmit)="postDados(FormCadastro)">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nome Completo</ion-label>
+        <ion-input type="text" name="nome" ngModel #nome="ngModel" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Telefone</ion-label>
+        <ion-input type="number" name="telefone" ngModel #telefone="ngModel" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" name="email" ngModel #email="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Ocupação</ion-label>
+        <ion-input type="text" name="ocupacao" ngModel #ocupacao="ngModel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Formação:</ion-label>
+        <ion-select [(ngModel)]="formacao" name="formacao" okText="Okay" cancelText="Dismiss">
+          <ion-option value="FC">Ensino Fundamental Completo</ion-option>
+          <ion-option value="MC">Ensino Médio Completo</ion-option>
+          <ion-option value="SC">Ensino Superior Completo</ion-option>
+          <ion-option value="PGANDO">Pós-Graduando</ion-option>
+          <ion-option value="PGADO">Pós-Graduado</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Como ficou sabendo do Escritório Financeiro:</ion-label>
+        <ion-select [(ngModel)]="sabendo" name="sabendo" multiple="true" okText="Okay" cancelText="Dismiss">
+          <ion-option>Blog Sala de Ações</ion-option>
+          <ion-option>Instagram</ion-option>
+          <ion-option>Facebook</ion-option>
+          <ion-option>E-mail</ion-option>
+          <ion-option>Youtube</ion-option>
+          <ion-option>Twitter</ion-option>
+          <ion-option>Site da UFPB</ion-option>
+          <ion-option>Anúncios na Universidade</ion-option>
+          <ion-option>Por amigos ou participantes</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Motivações:</ion-label>
+        <ion-select [(ngModel)]="motivacoes" name="motivacoes" multiple="true" okText="Okay" cancelText="Dismiss">
+          <ion-option>Estou endividado(a)</ion-option>
+          <ion-option>Não Consigo Poupar</ion-option>
+          <ion-option>Tenho curiosidade pelo tema</ion-option>
+          <ion-option>Um amigo me recomendou</ion-option>
+          <ion-option>Minha empresa esta quebrando</ion-option>
+          <ion-option>Estou montando um negocio</ion-option>
+          <ion-option>Estou fazendo um projeto</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Objetivos:</ion-label>
+        <ion-select [(ngModel)]="objetivos" name="objetivos" multiple="true" okText="Okay" cancelText="Dismiss">
+          <ion-option>Finanças Pessoais</ion-option>
+          <ion-option>Investimentos</ion-option>
+          <ion-option>Outras modalidades de EDUCAÇÃO FINANCEIRA</ion-option>
+          <ion-option>Sistema Financeiro Nacional</ion-option>
+          <ion-option>Mercado de Capitais</ion-option>
+          <ion-option>Seleção de Ativos</ion-option>
+          <ion-option>Analise Fundamentalista</ion-option>
+          <ion-option>Analise Gráfica</ion-option>
+          <ion-option>Análise das Demonstrações Financeiras</ion-option>
+          <ion-option>Renda Fixa</ion-option>
+          <ion-option>Renda Variavel</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Agendamento:</ion-label>
+        <ion-select [(ngModel)]="agendamento" name="agendamento" okText="Okay" cancelText="Dismiss">
+          <ion-option>Só eu</ion-option>
+          <ion-option>2</ion-option>
+          <ion-option>5 ou menos</ion-option>
+          <ion-option>10 ou menos</ion-option>
+          <ion-option>15 ou menos</ion-option>
+          <ion-option>20 ou menos</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Horário:</ion-label>
+        <ion-select [(ngModel)]="horario" name="horario" okText="Okay" cancelText="Dismiss">
+          <ion-option>08:00</ion-option>
+          <ion-option>09:00</ion-option>
+          <ion-option>11:00</ion-option>
+          <ion-option>14:00</ion-option>
+          <ion-option>15:00</ion-option>
+          <ion-option>16:00</ion-option>
+          <ion-option>17:00</ion-option>
+          <ion-option>18:00</ion-option>
+          <ion-option>19:00</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <button [disabled]="cadastro.invalid" ion-button full block color="danger">Enviar</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

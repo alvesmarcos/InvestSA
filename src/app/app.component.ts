@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
 import { LoginPage } from '../pages/login/login';
+import { AttendancePage } from '../pages/attendance/attendance';
 
 import firebase from 'firebase';
 
@@ -29,7 +30,7 @@ export class MyApp {
       {title: 'Expectativas do Mercado', component: null, icon: 'paper', active: false},
       {title: 'Educacional', component: null, icon: 'bookmarks', active: false},
       {title: 'Análises', component: AnalysisPage, icon: 'analytics', active: false},
-      {title: 'Atendimento', component: null, icon: 'people', active: false},
+      {title: 'Atendimento', component: AttendancePage, icon: 'people', active: false},
       {title: 'Configurações', component: null, icon: 'settings', active: false},
       {title: 'Sobre', component: null, icon: 'information-circle', active: false}
     ];
