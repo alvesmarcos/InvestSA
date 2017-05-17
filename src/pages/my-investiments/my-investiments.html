@@ -13,16 +13,23 @@
 </ion-header>
 
 <ion-content class="background">
-  <ion-card *ngFor="let invest of investiments" (click)="showDetailsInvestiment(invest)">
-    <ion-card-content no-padding>
-      <ion-item>
-        <p>Vencimento: {{invest.expirationDate}}</p>
-        <h1>{{invest.title}}</h1>
-        <p>Total de investimento nesse título R$ {{invest.valueTitle.toLocaleString('pt-BR')}}</p>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="!existElement" class="info-investiment">
+    <ion-icon name="trending-up"></ion-icon>
+    <h2>Meus Investimentos</h2>
+    <p>Cadastre seus investimentos e acompanhe seu rendimento</p>
+  </div>
+  <div *ngIf="existElement">
+    <ion-card *ngFor="let invest of investiments" (click)="showDetailsInvestiment(invest)">
+      <ion-card-content no-padding>
+        <ion-item>
+          <p>Vencimento: {{invest.expirationDate}}</p>
+          <h1>{{invest.title}}</h1>
+          <p>Total de investimento nesse título R$ {{invest.valueTitle.toLocaleString('pt-BR')}}</p>
+        </ion-item>
+      </ion-card-content>
+    </ion-card> 
+  </div>
   <ion-fab right bottom>
-    <button ion-fab color="accent"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="accent" (click)="addInvestiment()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

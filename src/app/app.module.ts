@@ -9,7 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
-import { PreviewPage } from '../pages/my-investiments/preview/preview';
+import { PreviewInvestimentModal } from '../pages/my-investiments/preview/preview';
+import { AddInvestimentModal } from '../pages/my-investiments/add/add';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { AttendancePage } from '../pages/attendance/attendance';
@@ -32,8 +33,9 @@ const firebaseConfig = {
     MyInvestimentsPage,
     LoginPage,
     RegisterPage,
-    PreviewPage,
-    AttendancePage
+    PreviewInvestimentModal,
+    AttendancePage,
+    AddInvestimentModal
   ],
   imports: [
     BrowserModule,
@@ -47,8 +49,9 @@ const firebaseConfig = {
     MyInvestimentsPage,
     LoginPage,
     RegisterPage,
-    PreviewPage,
-    AttendancePage
+    PreviewInvestimentModal,
+    AttendancePage,
+    AddInvestimentModal
   ],
   providers: [
     StatusBar,
