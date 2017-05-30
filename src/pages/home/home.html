@@ -14,84 +14,68 @@
 
 <ion-content class="background">
   <ion-card>
-    <ion-card-content>
-      <ion-grid no-padding>
-        <ion-row style="margin-bottom: 10px;">
-          <ion-col col-3>
-            <h2>Índice</h2>
-          </ion-col>
-          <ion-col col-5>
-            <div class="line-index">
-              <h2>Sem. Anterior</h2>  
-            </div>
-          </ion-col>
-          <ion-col col-4>
-            <div class="line-index">
-              <h2>Sem. Atual</h2>
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-3>
-            <p>IPCA</p>
-          </ion-col>
-          <ion-col col-5>
-            <div class="line-index">
-              <ion-icon color="danger" name="ios-arrow-down"></ion-icon>  
-            </div>
-          </ion-col>
-          <ion-col col-4>
-            <div class="line-index">
-              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-3>
-            <p>Selic</p>
-          </ion-col>
-          <ion-col col-5>
-            <div class="line-index">
-              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
-            </div>
-          </ion-col>
-          <ion-col col-4>
-            <div class="line-index">
-              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-3>
-            <p>PIB</p>
-          </ion-col>
-          <ion-col col-5>
-            <div class="line-index">
-              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
-            </div>
-          </ion-col>
-          <ion-col col-4>
-            <div class="line-index">
-              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-3>
-            <p>Câmbio</p>
-          </ion-col>
-          <ion-col col-5>
-            <div class="line-index">
-              <ion-icon color="free" name="ios-arrow-up"></ion-icon>  
-            </div>
-          </ion-col>
-          <ion-col col-4>
-            <div class="line-index">
-              <ion-icon color="danger" name="ios-arrow-down"></ion-icon>  
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-card-header>Expectativas do Mercado</ion-card-header>
+    <ion-card-content no-padding>
+    <ion-list>
+      <ion-item no-lines text-wrap>
+        <ion-label item-left>
+          <ion-icon name="swap" padding-right></ion-icon>
+           Índice
+        </ion-label>
+        <ion-label>
+          <ion-icon name="refresh" padding-right></ion-icon>
+          Semana Atual
+        </ion-label>
+      </ion-item>
+      <div class="div-hr"></div>
+      <ion-item no-lines text-wrap>
+        <ion-label color="dark" padding-left item-left>
+          <ion-icon name="" padding-right></ion-icon>
+          IPCA
+        </ion-label>
+        <ion-label padding-left color="dark">
+          <ion-icon name="" padding-right></ion-icon>
+          {{'0,32 %'}}
+          <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
+        </ion-label>
+      </ion-item>
+      <div class="div-hr"></div>
+      <ion-item no-lines text-wrap>
+        <ion-label color="dark" padding-left item-left>
+          <ion-icon name="" padding-right></ion-icon>
+          Selic
+        </ion-label>
+        <ion-label padding-left color="dark">
+          <ion-icon name="" padding-right></ion-icon>
+          {{'2,20 %'}}
+          <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
+        </ion-label>
+      </ion-item>
+      <div class="div-hr"></div>
+      <ion-item no-lines text-wrap>
+        <ion-label color="dark" padding-left item-left>
+          <ion-icon name="" padding-right></ion-icon>
+          PIB
+        </ion-label>
+        <ion-label padding-left color="dark">
+          <ion-icon name="" padding-right></ion-icon>
+          {{'0,10 %'}}
+          <ion-icon name="remove" color="dark" padding-left></ion-icon>
+        </ion-label>
+      </ion-item>
+      <div class="div-hr"></div>
+      <ion-item no-lines text-wrap>
+        <ion-label color="dark" padding-left item-left>
+          <ion-icon name="" padding-right></ion-icon>
+          Câmbio
+        </ion-label>
+        <ion-label padding-left color="dark">
+          <ion-icon name="" padding-right></ion-icon>
+          {{'3,00 %'}}
+          <ion-icon name="arrow-round-down" color="danger" padding-left></ion-icon>
+        </ion-label>
+      </ion-item>
+    </ion-list>
     </ion-card-content>
   </ion-card>
 
