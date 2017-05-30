@@ -8,6 +8,7 @@ import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
 import { LoginPage } from '../pages/login/login';
 import { AttendancePage } from '../pages/attendance/attendance';
+import { About } from '../pages/about/about';
 
 import firebase from 'firebase';
 
@@ -32,7 +33,7 @@ export class MyApp {
       {title: 'Análises', component: AnalysisPage, icon: 'analytics', active: false},
       {title: 'Atendimento', component: AttendancePage, icon: 'people', active: false},
       {title: 'Configurações', component: null, icon: 'settings', active: false},
-      {title: 'Sobre', component: null, icon: 'information-circle', active: false}
+      {title: 'Sobre', component: About, icon: 'information-circle', active: false}
     ];
 
 

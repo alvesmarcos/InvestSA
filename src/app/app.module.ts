@@ -14,6 +14,7 @@ import { AddInvestimentModal } from '../pages/my-investiments/add/add';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { AttendancePage } from '../pages/attendance/attendance';
+import { About } from '../pages/about/about'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAOeyA8mbblOh2AV_tZp7ykzoP26kjHry4",
@@ -35,7 +36,8 @@ const firebaseConfig = {
     RegisterPage,
     PreviewInvestimentModal,
     AttendancePage,
-    AddInvestimentModal
+    AddInvestimentModal,
+    About
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ const firebaseConfig = {
     RegisterPage,
     PreviewInvestimentModal,
     AttendancePage,
-    AddInvestimentModal
+    AddInvestimentModal,
+    About
   ],
   providers: [
     StatusBar,
