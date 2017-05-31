@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-item color="primary" no-lines>
+    <ion-item color="theme" no-lines>
       <ion-icon name="close" color="dark" item-left (click)="close()"></ion-icon>
       <ion-title>Adicionar Título</ion-title>
       <ion-icon name="done-all"  color="dark" item-right (click)="save()"></ion-icon>
@@ -13,7 +13,7 @@
     <ion-item text-wrap no-lines>
       <ion-icon name="trending-up" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Selecione um título</ion-label>
-      <ion-select sytle="color: black;" [(ngModel)]="investiment.title">
+      <ion-select color="dark" [(ngModel)]="investiment.title" selected>
         <ion-option value="Tesouro IPCA">Tesouro IPCA</ion-option>
         <ion-option value="Tesouro SELIC">Tesouro SELIC</ion-option>
         <ion-option value="Tesouro PREFIXADO">Tesouro PREFIXADO</ion-option>
@@ -27,40 +27,40 @@
     <ion-item text-wrap no-lines>
       <ion-icon name="pricetag" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Quantidade comprada  </ion-label>
-      <ion-input type="text" [(ngModel)]="investiment.quantityPurchased"></ion-input>
+      <ion-input type="tel" [(ngModel)]="investiment.quantityPurchased"></ion-input>
     </ion-item>
     <hr/>
     <ion-item no-lines text-wrap>
       <ion-icon name="calendar" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Data da compra  </ion-label>
-      <ion-input type="text" [(ngModel)]="investiment.purchaseDate"></ion-input>
+      <ion-input type="date" [(ngModel)]="investiment.purchaseDate"></ion-input>
     </ion-item>
     <ion-item no-lines text-wrap>
       <ion-icon item-left></ion-icon>
       <ion-label style="font-size: 16px;">Vencimento  </ion-label>
-      <ion-input type="text" [(ngModel)]="investiment.expirationDate"></ion-input>
+      <ion-input type="date" [(ngModel)]="investiment.expirationDate"></ion-input>
     </ion-item>
     <hr/>
     <ion-item no-lines text-wrap>
       <ion-icon name="swap" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Taxa administração  </ion-label>
-      <ion-input type="text" [(ngModel)]="investiment.administrationFee"></ion-input>
+      <ion-input type="tel" [(ngModel)]="investiment.administrationFee"></ion-input>
     </ion-item>
     <ion-item no-lines text-wrap>
       <ion-icon item-left></ion-icon>
       <ion-label style="font-size: 16px;">Taxa compra  </ion-label>
-      <ion-input type="text" [(ngModel)]="investiment.purchaseRate"></ion-input>
+      <ion-input type="tel" [(ngModel)]="investiment.purchaseRate"></ion-input>
     </ion-item>
     <hr/>
     <ion-item no-lines text-wrap>
       <ion-icon name="logo-usd" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Valor investido  </ion-label>
-      <ion-input type="text" [(ngModel)]="investiment.paid"></ion-input>
+      <ion-input type="tel" [(ngModel)]="investiment.paid"></ion-input>
     </ion-item>
     <ion-item no-lines text-wrap no-lines>
       <ion-icon item-left></ion-icon>
       <ion-label style="font-size: 16px;">Valor do título  </ion-label>
-      <ion-input type="text" [(ngModel)]="investiment.valueTitle"></ion-input>
+      <ion-input type="tel" [(ngModel)]="investiment.valueTitle"></ion-input>
     </ion-item>
     <ion-item no-lines text-wrap no-lines></ion-item>
   </ion-list>
