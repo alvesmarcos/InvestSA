@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -10,7 +10,8 @@ import { LoginPage } from '../pages/login/login';
 import { AttendancePage } from '../pages/attendance/attendance';
 import { About } from '../pages/about/about';
 
-import { FirebaseService } from '../providers/firebase-service'
+import { FirebaseService } from '../providers/firebase-service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,11 +19,32 @@ import { FirebaseService } from '../providers/firebase-service'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LoginPage;
+  rootPage:any;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public firebase: FirebaseService) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public firebase: FirebaseService,
+              public afAuth: AngularFireAuth,
+              public ngZone:NgZone) {
+
     this.initializeApp();
+
+    /* Verifica se usuario esta logado e set Pagina Inicial */
+    const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
+      this.ngZone.run( () => {
+        if (!user) {
+          console.log('user not logged');
+          this.rootPage = LoginPage;
+          unsubscribe();
+        } else {
+          console.log('user logged');
+          this.rootPage = HomePage;
+          unsubscribe();
+        }
+      });
+    });
 
     this.pages = [
       {title: 'Home', component: HomePage, icon: 'home', active: true},
@@ -59,7 +81,7 @@ export class MyApp {
         console.log('deslogou');
       }
       else {
-        console.log(response.message);
+        console.log(response);
       }
     });
   }

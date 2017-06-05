@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 import { Credential } from '../model/credential';
 import { User } from '../model/user';
 
@@ -10,11 +11,13 @@ import { User } from '../model/user';
 export class FirebaseService {
 
   users:FirebaseListObservable<any>;
+  facebookProvider:firebase.auth.FacebookAuthProvider;
 
   constructor(public afAuth: AngularFireAuth,
               public db: AngularFireDatabase) {
 
       this.users = db.list('/users');
+      this.facebookProvider = new firebase.auth.FacebookAuthProvider();
   }
 
   loginWithCredential(credential:Credential, isSuccess){
@@ -27,11 +30,17 @@ export class FirebaseService {
       });
   }
 
+  loginWithFacebook(isSucess){
+    this.afAuth.auth.signInWithPopup(this.facebookProvider)
+                    .then(result => isSucess(true, result)).catch(error => isSucess(false, error));
+  }
+
   createUserWithCredential(user:User, credential:Credential, isSucess){
     this.afAuth.auth.createUserWithEmailAndPassword(credential.email, credential.password)
       .then(result => {
         //sucesso! Registrar usuario no RealTimeDB
-        console.log(user);
+        this.getCurrentUser().displayName = user.name;
+        console.log("User registered: "+user);
         this.users.push(user);
         isSucess(true, result);
       })
@@ -45,4 +54,9 @@ export class FirebaseService {
       .then(isSuccess(true))
       .catch(error => {isSuccess(false, error)});
   }
+
+  getCurrentUser(){
+    return this.afAuth.auth.currentUser;
+  }
+
 }
