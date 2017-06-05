@@ -10,7 +10,7 @@ import { LoginPage } from '../pages/login/login';
 import { AttendancePage } from '../pages/attendance/attendance';
 import { About } from '../pages/about/about';
 
-import firebase from 'firebase';
+import { FirebaseService } from '../providers/firebase-service'
 
 @Component({
   templateUrl: 'app.html'
@@ -18,10 +18,10 @@ import firebase from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public firebase: FirebaseService) {
     this.initializeApp();
 
     this.pages = [
@@ -53,8 +53,14 @@ export class MyApp {
   }
 
   logout() {
-    firebase.auth().signOut()
-      .then(() => this.nav.setRoot(LoginPage))
-      .catch(error => console.log(error.message));
+    this.firebase.logout((isSuccess, response) => {
+      if (isSuccess){
+        this.nav.setRoot(LoginPage);
+        console.log('deslogou');
+      }
+      else {
+        console.log(response.message);
+      }
+    });
   }
 }

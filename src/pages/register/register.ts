@@ -5,24 +5,23 @@ import { Credential } from '../../model/credential';
 import { User } from '../../model/user';
 import { HomePage } from '../home/home';
 
-import firebase from 'firebase';
+import { FirebaseService } from '../../providers/firebase-service';
 
-/**
- * Generated class for the Register page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
+
 export class RegisterPage {
 
   credential:Credential;
   user:User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public toastCtrl: ToastController,
+              public firebaseService: FirebaseService) {
     this.credential = new Credential();
     this.user = new User();
   }
@@ -30,19 +29,17 @@ export class RegisterPage {
   ionViewDidLoad() {}
 
   registerUser(){
-    firebase.auth().createUserWithEmailAndPassword(this.credential.email, this.credential.password)
-      .then(result => {
-        //sucesso! Registrar usuario no RealTimeDB
-        console.log(this.user);
-        firebase.database().ref('users/').child(result.uid).set(this.user);
+    this.firebaseService.createUserWithCredential(this.user, this.credential, (isSuccess, response) => {
+      if (isSuccess) {
+        this.presentToast('Conta criada com sucesso!');
+        console.log(response);
         this.navCtrl.setRoot(HomePage);
-      })
-      .catch(error => {
-        console.log(error.message)
-      });
-
-      //Apagar dados - Aellison Tips
-      this.credential = null;
+      }
+      else {
+        this.presentToast('Erro ao criar conta');
+        console.log(response);
+      }
+    });
   }
 
   presentToast(message) {

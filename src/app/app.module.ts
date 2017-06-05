@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import firebase from 'firebase';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -16,7 +15,14 @@ import { RegisterPage } from '../pages/register/register';
 import { AttendancePage } from '../pages/attendance/attendance';
 import { About } from '../pages/about/about'
 
-const firebaseConfig = {
+import { AngularFireModule } from 'angularfire2';
+
+// New imports to update based on AngularFire2 version 4
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FirebaseService } from '../providers/firebase-service';
+
+export const firebaseConfig = {
   apiKey: "AIzaSyAOeyA8mbblOh2AV_tZp7ykzoP26kjHry4",
   authDomain: "invest-sa.firebaseapp.com",
   databaseURL: "https://invest-sa.firebaseio.com",
@@ -41,7 +47,10 @@ const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,11 +68,10 @@ const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {
-  constructor(){
-    firebase.initializeApp(firebaseConfig);
-  }
+  constructor(){}
 }

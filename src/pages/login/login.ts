@@ -4,7 +4,13 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Credential } from '../../model/credential';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
-import firebase from 'firebase';
+
+//import firebase from 'firebase';
+
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { FirebaseService } from '../../providers/firebase-service';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -12,47 +18,38 @@ import firebase from 'firebase';
 export class LoginPage {
 
   credential:Credential;
-  flag:boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public afAuth: AngularFireAuth,
+              public af: AngularFireDatabase,
+              public firebaseService: FirebaseService) {
 
       this.credential = new Credential();
-      this.flag = true;
-
-
+      //console.log(this.afAuth.authState)
   }
 
   ionViewDidLoad() {
-    // Verifica se o usuario ja esta logado.
-    firebase.auth().onAuthStateChanged(user => {
-      if (user && this.flag) {
-        // Usuario esta Logado
-        console.log('onAuthStateChanged user');
-        this.navCtrl.setRoot(HomePage);
-        this.flag = false;
-
-
-      } else {
-        // No user is signed in.
-        //console.log("usuario nao logado");
-      }
-    });
+    //console.log(this.afAuth.authState)
   }
 
-  loginWithCredential(){
-    firebase.auth().signInWithEmailAndPassword(this.credential.email, this.credential.password)
-      .then(result => {
-        this.flag = true;
-      })
-      .catch(error => {
-        this.presentToast(error.message);
-        console.log(error.message);
-      });
 
-      //Apagar dados - Aellison Tips
-      this.credential = null;
+
+  loginWithCredential(){
+    //console.log(this.afAuth.auth.signInAnonymously());
+    this.firebaseService.loginWithCredential(this.credential, (isSuccess, response) => {
+      if (isSuccess) {
+        console.log(response);
+        console.log("Sucesso! Usuario logado "+response.email);
+        this.navCtrl.setRoot(HomePage);
+      }
+      else {
+        this.presentToast(response);
+        console.log('false')
+        console.log(response);
+      }
+    });
   }
 
   toRegisterPage(){
