@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { Credential } from '../../model/credential';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
-import firebase from 'firebase';
+
+import { FirebaseService } from '../../providers/firebase-service';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -12,47 +15,46 @@ import firebase from 'firebase';
 export class LoginPage {
 
   credential:Credential;
-  flag:boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public firebaseService: FirebaseService) {
 
       this.credential = new Credential();
-      this.flag = true;
-
 
   }
 
-  ionViewDidLoad() {
-    // Verifica se o usuario ja esta logado.
-    firebase.auth().onAuthStateChanged(user => {
-      if (user && this.flag) {
-        // Usuario esta Logado
-        console.log('onAuthStateChanged user');
+  ionViewDidLoad() {}
+
+  loginWithCredential(){
+    this.firebaseService.loginWithCredential(this.credential, (isSuccess, response) => {
+      if (isSuccess) {
+        // console.log(response);
+        // console.log("Sucesso! Usuario logado");
         this.navCtrl.setRoot(HomePage);
-        this.flag = false;
-
-
-      } else {
-        // No user is signed in.
-        //console.log("usuario nao logado");
+      }
+      else {
+        this.presentToast(response.message);
+        // console.log('error')
+        // console.log(response);
       }
     });
   }
 
-  loginWithCredential(){
-    firebase.auth().signInWithEmailAndPassword(this.credential.email, this.credential.password)
-      .then(result => {
-        this.flag = true;
-      })
-      .catch(error => {
-        this.presentToast(error.message);
-        console.log(error.message);
-      });
-
-      //Apagar dados - Aellison Tips
-      this.credential = null;
+  loginWithFacebook(){
+    this.firebaseService.loginWithFacebook((isSucess, response) => {
+      if (isSucess) {
+        // console.log(response);
+        // console.log("Sucesso! Usuario logado");
+        this.navCtrl.setRoot(HomePage);
+      }
+      else {
+        this.presentToast(response.message);
+        // console.log('error')
+        // console.log(response);
+      }
+    });
   }
 
   toRegisterPage(){

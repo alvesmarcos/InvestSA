@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -10,7 +10,8 @@ import { LoginPage } from '../pages/login/login';
 import { AttendancePage } from '../pages/attendance/attendance';
 import { About } from '../pages/about/about';
 
-import firebase from 'firebase';
+import { FirebaseService } from '../providers/firebase-service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,11 +19,32 @@ import firebase from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any;
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public firebase: FirebaseService,
+              public afAuth: AngularFireAuth,
+              public ngZone:NgZone) {
+
     this.initializeApp();
+
+    /* Verifica se usuario esta logado e set Pagina Inicial */
+    const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
+      this.ngZone.run( () => {
+        if (!user) {
+          console.log('user not logged');
+          this.rootPage = LoginPage;
+          unsubscribe();
+        } else {
+          console.log('user logged');
+          this.rootPage = HomePage;
+          unsubscribe();
+        }
+      });
+    });
 
     this.pages = [
       {title: 'Home', component: HomePage, icon: 'home', active: true},
@@ -53,8 +75,14 @@ export class MyApp {
   }
 
   logout() {
-    firebase.auth().signOut()
-      .then(() => this.nav.setRoot(LoginPage))
-      .catch(error => console.log(error.message));
+    this.firebase.logout((isSuccess, response) => {
+      if (isSuccess){
+        this.nav.setRoot(LoginPage);
+        console.log('deslogou');
+      }
+      else {
+        console.log(response);
+      }
+    });
   }
 }
