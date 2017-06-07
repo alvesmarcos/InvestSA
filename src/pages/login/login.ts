@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { Credential } from '../../model/credential';
@@ -6,7 +6,6 @@ import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 
 import { FirebaseService } from '../../providers/firebase-service';
-import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-login',
@@ -35,7 +34,7 @@ export class LoginPage {
         this.navCtrl.setRoot(HomePage);
       }
       else {
-        this.presentToast(response.message);
+        this.presentToast(JSON.stringify(response));
         // console.log('error')
         // console.log(response);
       }
@@ -44,13 +43,15 @@ export class LoginPage {
 
   loginWithFacebook(){
     this.firebaseService.loginWithFacebook((isSucess, response) => {
+      this.presentToast('Response: '+JSON.stringify(response));
       if (isSucess) {
         // console.log(response);
         // console.log("Sucesso! Usuario logado");
+        this.presentToast(JSON.stringify(response));
         this.navCtrl.setRoot(HomePage);
       }
       else {
-        this.presentToast(response.message);
+        this.presentToast(JSON.stringify(response));
         // console.log('error')
         // console.log(response);
       }

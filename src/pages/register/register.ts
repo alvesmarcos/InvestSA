@@ -36,7 +36,7 @@ export class RegisterPage {
         this.navCtrl.setRoot(HomePage);
       }
       else {
-        this.presentToast('Erro ao criar conta');
+        this.presentToast(JSON.stringify(response));
         console.log(response);
       }
     });
