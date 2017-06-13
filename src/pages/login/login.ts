@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, MenuController } from 'ionic-angular';
 
 import { Credential } from '../../model/credential';
 import { HomePage } from '../home/home';
@@ -18,19 +18,25 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController,
+              public menuCtrl: MenuController,
               public firebaseService: FirebaseService) {
 
       this.credential = new Credential();
-
+      this.menuCtrl.enable(false);
   }
 
   ionViewDidLoad() {}
+
+  ionViewWillLeave() {
+    console.log('login leave')
+  }
 
   loginWithCredential(){
     this.firebaseService.loginWithCredential(this.credential, (isSuccess, response) => {
       if (isSuccess) {
         // console.log(response);
         // console.log("Sucesso! Usuario logado");
+        this.menuCtrl.enable(true);
         this.navCtrl.setRoot(HomePage);
       }
       else {
@@ -47,6 +53,7 @@ export class LoginPage {
       if (isSucess) {
         // console.log(response);
         // console.log("Sucesso! Usuario logado");
+        this.menuCtrl.enable(true);
         this.presentToast(JSON.stringify(response));
         this.navCtrl.setRoot(HomePage);
       }
