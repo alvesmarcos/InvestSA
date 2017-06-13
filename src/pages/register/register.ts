@@ -51,4 +51,7 @@ export class RegisterPage {
     toast.present();
   }
 
+  closeRegister() {
+    this.navCtrl.pop();
+  }
 }
