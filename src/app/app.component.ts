@@ -9,6 +9,7 @@ import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
 import { LoginPage } from '../pages/login/login';
 import { AttendancePage } from '../pages/attendance/attendance';
 import { About } from '../pages/about/about';
+import { MarketPage } from '../pages/market/market';
 
 import { FirebaseService } from '../providers/firebase-service';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -36,7 +37,7 @@ export class MyApp {
       this.ngZone.run( () => {
         if (!user) {
           console.log('user not logged');
-          this.rootPage = LoginPage;
+          this.rootPage = HomePage;
           unsubscribe();
         } else {
           console.log('user logged');
@@ -50,7 +51,7 @@ export class MyApp {
       {title: 'Home', component: HomePage, icon: 'home', active: true},
       {title: 'Meus Investimentos', component: MyInvestimentsPage, icon: 'trending-up', active: false},
       {title: 'Investimentos', component: null, icon: 'stats', active: false},
-      {title: 'Expectativas do Mercado', component: null, icon: 'paper', active: false},
+      {title: 'Expectativas do Mercado', component: MarketPage, icon: 'paper', active: false},
       {title: 'Educacional', component: null, icon: 'bookmarks', active: false},
       {title: 'Análises', component: AnalysisPage, icon: 'analytics', active: false},
       {title: 'Atendimento', component: AttendancePage, icon: 'people', active: false},

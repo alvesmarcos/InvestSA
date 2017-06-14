@@ -1,0 +1,26 @@
+page-market {
+  ion-buttons ion-icon {
+    font-size: 25px;
+  }
+  ion-label {
+    color: #757575;
+  }
+
+  ion-grid ion-icon {
+    font-size: 25px;
+  }
+
+  .background {
+    background-color: color($colors, light);
+  }
+
+  .line-index {
+    text-align: center;
+  } 
+  
+  .div-hr {
+    border-bottom: 1px #EBEFF2 solid;
+    margin-left: 16px; 
+    margin-right: 16px;
+  }
+}

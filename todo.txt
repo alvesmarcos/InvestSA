@@ -1,6 +1,0 @@
-- Modificar input do meus investimentos 
-- Tempo do Login (diminuir)
-- Criar conta offline
-
-- WindowsPhone configurar 
-- iOS configurar
