@@ -1,0 +1,76 @@
+<ion-header no-border>
+  <ion-navbar color="theme">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Investimentos</ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        <ion-icon name="more" padding-left></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-toolbar color="theme">
+    <ion-segment class="segment" color="dark" [(ngModel)]="categories">
+      <ion-segment-button value="rendafixa">
+        Renda Fixa
+      </ion-segment-button>
+      <ion-segment-button  value="rendavariavel">
+        Renda Variável
+      </ion-segment-button>
+      <ion-segment-button  value="fundos">
+        Fundos
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <div [ngSwitch]="categories">
+    <ion-card  *ngSwitchCase="'rendafixa'">
+      <ion-card-content no-padding>
+        <ion-item text-wrap>
+          <ion-icon color="accent" name="cube" item-left></ion-icon>
+          <p style="font-size: 16px; color: #000;">Poupança</p>
+          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <hr no-padding/>
+        <ion-item text-wrap>
+          <ion-icon color="accent" name="pricetag" item-left></ion-icon>
+          <p style="font-size: 16px; color: #000;">CDB</p>
+          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <hr no-padding/> 
+        <ion-item text-wrap>
+          <ion-icon color="accent" name="card" item-left></ion-icon>
+          <p style="font-size: 16px; color: #000;">LCA/LCI</p>
+          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <hr no-padding/>
+        <ion-item text-wrap>
+          <ion-icon color="accent" name="cash" item-left></ion-icon>
+          <p style="font-size: 16px; color: #000;">Tesouro IPCA+</p>
+          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <hr no-padding/>
+        <ion-item text-wrap>
+          <ion-icon  color="accent" name="logo-usd" item-left></ion-icon>
+          <p style="font-size: 16px; color: #000;">Tesouro Selic</p>
+          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+        <hr no-padding/>
+        <ion-item text-wrap>
+          <ion-icon  color="accent" name="done-all" item-left></ion-icon>
+          <p style="font-size: 16px; color: #000;">Tesouro Prefixado</p>
+          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-card  *ngSwitchCase="'rendavariavel'">
+      <ion-card-content></ion-card-content>
+    </ion-card>
+    <ion-card  *ngSwitchCase="'fundos'">
+      <ion-card-content></ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
