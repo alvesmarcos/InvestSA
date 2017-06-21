@@ -1,13 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { GraphMaker } from '../../util/graph-maker'
+import { Component } from '@angular/core';
+import { NavController, ModalController } from 'ionic-angular';
 
-import { FirebaseService } from '../../providers/firebase-service';
+import { DetailsMarketModal } from './details/details';
 
 @Component({
   selector: 'page-market',
 	templateUrl: 'market.html'
 })
-export class MarketPage {
-	constructor(public navCtrl: NavController, public firebaseService: FirebaseService) {}
+export class MarketPage  {
+	constructor(public navCtrl: NavController, public modalCtrl: ModalController) {}
+
+	showDetailsMarket() {
+		let modal = this.modalCtrl.create(DetailsMarketModal);
+		modal.present();
+	}
+
 }

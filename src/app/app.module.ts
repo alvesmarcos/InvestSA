@@ -13,8 +13,9 @@ import { AddInvestimentModal } from '../pages/my-investiments/add/add';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { AttendancePage } from '../pages/attendance/attendance';
-import { About } from '../pages/about/about'
-import { MarketPage } from '../pages/market/market'
+import { About } from '../pages/about/about';
+import { MarketPage } from '../pages/market/market';
+import { DetailsMarketModal } from '../pages/market/details/details';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -46,7 +47,8 @@ export const firebaseConfig = {
     AttendancePage,
     AddInvestimentModal,
     About,
-    MarketPage
+    MarketPage,
+    DetailsMarketModal
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ export const firebaseConfig = {
     AttendancePage,
     AddInvestimentModal,
     About,
-    MarketPage
+    MarketPage,
+    DetailsMarketModal
   ],
   providers: [
     StatusBar,

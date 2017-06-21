@@ -65,12 +65,12 @@ export class  MyInvestimentsPage implements AfterViewInit {
   private checkIfExistElement() {
     if(this.investiments.length > 0) {
       this.existElement = true;
-      this.inflateCharts();
+      this.inflateChart();
     } else 
       this.existElement = false;
   }
 
-  private inflateCharts() {
+  private inflateChart() {
     this.donutChart = new Chart(this.donutCanvas.nativeElement, {
       type: 'doughnut',
       data: {

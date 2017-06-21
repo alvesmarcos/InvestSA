@@ -14,7 +14,7 @@
 
 <ion-content class="background">
   <ion-card>
-    <ion-card-header>Toque no índice para mais detalhes</ion-card-header>
+    <ion-card-header text-wrap>Toque em algum índice para mais detalhes</ion-card-header>
     <ion-card-content no-padding>
     <ion-list>
       <ion-item no-lines text-wrap>
@@ -28,7 +28,7 @@
         </ion-label>
       </ion-item>
       <div class="div-hr"></div>
-      <ion-item no-lines text-wrap>
+      <ion-item no-lines (click)="showDetailsMarket()" text-wrap>
         <ion-label color="dark" padding-left item-left>
           IPCA (%)
         </ion-label>
