@@ -27,50 +27,128 @@
     </ion-segment>
   </ion-toolbar>
   <div [ngSwitch]="categories">
-    <ion-card  *ngSwitchCase="'rendafixa'">
-      <ion-card-content no-padding>
-        <ion-item text-wrap>
-          <ion-icon color="accent" name="cube" item-left></ion-icon>
-          <p style="font-size: 16px; color: #000;">Poupança</p>
-          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
-        <hr no-padding/>
-        <ion-item text-wrap>
-          <ion-icon color="accent" name="pricetag" item-left></ion-icon>
-          <p style="font-size: 16px; color: #000;">CDB</p>
-          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
-        <hr no-padding/> 
-        <ion-item text-wrap>
-          <ion-icon color="accent" name="card" item-left></ion-icon>
-          <p style="font-size: 16px; color: #000;">LCA/LCI</p>
-          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
-        <hr no-padding/>
-        <ion-item text-wrap>
-          <ion-icon color="accent" name="cash" item-left></ion-icon>
-          <p style="font-size: 16px; color: #000;">Tesouro IPCA+</p>
-          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
-        <hr no-padding/>
-        <ion-item text-wrap>
-          <ion-icon  color="accent" name="logo-usd" item-left></ion-icon>
-          <p style="font-size: 16px; color: #000;">Tesouro Selic</p>
-          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
-        <hr no-padding/>
-        <ion-item text-wrap>
-          <ion-icon  color="accent" name="done-all" item-left></ion-icon>
-          <p style="font-size: 16px; color: #000;">Tesouro Prefixado</p>
-          <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-    <ion-card  *ngSwitchCase="'rendavariavel'">
-      <ion-card-content></ion-card-content>
-    </ion-card>
-    <ion-card  *ngSwitchCase="'fundos'">
-      <ion-card-content></ion-card-content>
-    </ion-card>
+    <div *ngSwitchCase="'rendafixa'"> 
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <p>Renda Fixa</p>
+            <h1>{{'Sobre'}}</h1>
+            <ion-icon name="information-circle" color="accent" item-right></ion-icon>
+          </ion-item>
+          <p padding-left padding-right>Investir em Renda Fixa significa emprestar dinheiro para alguém, como banco, empresa ou para o governo. Na contrapartida, você recebe uma remuneração.</p>
+        </ion-card-content>
+      </ion-card> 
+      <ion-card>
+        <ion-card-content no-padding>
+          <ion-item padding-top text-wrap>
+            <ion-icon style="color:#757575;" name="cube" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Poupança</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item text-wrap>
+            <ion-icon style="color:#757575;"  name="pricetag" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">CDB</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/> 
+          <ion-item text-wrap>
+            <ion-icon style="color:#757575;" name="card" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">LCA/LCI</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item text-wrap>
+            <ion-icon style="color:#757575;"  name="cash" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Tesouro IPCA+</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item text-wrap>
+            <ion-icon style="color:#757575;"  name="logo-usd" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Tesouro Selic</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item padding-bottom text-wrap>
+            <ion-icon style="color:#757575;"  name="done-all" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Tesouro Prefixado</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngSwitchCase="'rendavariavel'"> 
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <p>Renda Variável</p>
+            <h1>{{'Sobre'}}</h1>
+            <ion-icon name="information-circle" color="accent" item-right></ion-icon>
+          </ion-item>
+          <p padding-left padding-right>Ativos de renda variável são aqueles cuja remuneração ou retorno de capital não pode ser dimensionado no momento da aplicação, podendo variar positivamente ou negativamente, de acordo com as expectativas do mercado.</p>
+        </ion-card-content>
+      </ion-card> 
+      <ion-card>
+        <ion-card-content no-padding>
+          <ion-item padding-top text-wrap>
+            <ion-icon style="color:#757575;" name="cash" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Ibovespa</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item text-wrap>
+            <ion-icon style="color:#757575;"  name="podium" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Índice Small Cap</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/> 
+          <ion-item text-wrap>
+            <ion-icon style="color:#757575;" name="stats" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">IDIV</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item text-wrap>
+            <ion-icon style="color:#757575;"  name="trending-up" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">IFIX</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item padding-bottom text-wrap>
+            <ion-icon style="color:#757575;"  name="logo-usd" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Dólar Comercial Mercado</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+     <div *ngSwitchCase="'fundos'"> 
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <p>Fundos</p>
+            <h1>{{'Sobre'}}</h1>
+            <ion-icon name="information-circle" color="accent" item-right></ion-icon>
+          </ion-item>
+          <p padding-left padding-right>Os fundos de investimento são um meio para se investir nos mais diversos produtos. Ele são divididos em pedaços chamados de cotas. Então, quando você aloca dinheiro em um fundo irá receber X cotas.</p>
+        </ion-card-content>
+      </ion-card> 
+      <ion-card>
+        <ion-card-content no-padding>
+          <ion-item padding-top text-wrap>
+            <ion-icon style="color:#757575;" name="logo-usd" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Fundos de Renda Fixa</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+          <hr no-padding/>
+          <ion-item padding-bottom text-wrap>
+            <ion-icon style="color:#757575;"  name="cash" item-left></ion-icon>
+            <p style="font-size: 16px; color: #000;">Fundos DI</p>
+            <ion-icon color="secondary" name="ios-arrow-forward" item-right></ion-icon>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
