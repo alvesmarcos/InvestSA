@@ -1,13 +1,63 @@
 <ion-header>
-    <ion-navbar color="theme">
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-        <ion-title>Atendimento</ion-title>
-    </ion-navbar>
+  <ion-toolbar color="theme">
+    <ion-item color="theme" no-lines>
+      <ion-icon name="close" color="dark" item-left (click)="closeAttendace()"></ion-icon>
+      <ion-title>Atendimento</ion-title>
+    </ion-item>
+  </ion-toolbar>
 </ion-header>
-<ion-content padding>
-    <h2>Cadastro</h2>
+
+<ion-content>
+	<ion-list padding-top>
+		<ion-item text-wrap no-lines>
+      <ion-icon name="person" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">Nome </ion-label>
+      <ion-input type="tel" [(ngModel)]="fullname"></ion-input>
+    </ion-item>
+    <hr/>
+		<ion-item text-wrap no-lines>
+      <ion-icon name="mail" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">E-mail </ion-label>
+      <ion-input type="tel" [(ngModel)]="email"></ion-input>
+    </ion-item>
+		<ion-item text-wrap no-lines>
+      <ion-icon name="" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">Telefone </ion-label>
+      <ion-input type="tel" [(ngModel)]="phone"></ion-input>
+    </ion-item>
+		<hr/>
+		<ion-item no-lines text-wrap>
+      <ion-icon name="md-checkmark-circle-outline" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">Objetivos </ion-label>
+      <ion-select [(ngModel)]="goal" name="Objetivos" multiple="true" okText="Ok" cancelText="Cancelar">
+      	<ion-option value="Finanças Pessoais">Finanças Pessoais</ion-option>
+        <ion-option value="Investimentos">Investimentos</ion-option>
+        <ion-option value="Outras modalidades de Educação Financeira">Outras modalidades de Educação Financeira</ion-option>
+        <ion-option value="Sistema Financeiro Nacional">Sistema Financeiro Nacional</ion-option>
+        <ion-option value="Mercado de Capitais">Mercado de Capitais</ion-option>
+        <ion-option value="Seleção de Ativos">Seleção de Ativos</ion-option>
+        <ion-option value="Analise Fundamentalista">Analise Fundamentalista</ion-option>
+        <ion-option value="Analise Gráfica">Analise Gráfica</ion-option>
+        <ion-option value="Análise das Demonstrações Financeiras">Análise das Demonstrações Financeiras</ion-option>
+        <ion-option value="Renda Fixa">Renda Fixa</ion-option>
+        <ion-option value="Renda Variavel">Renda Variavel</ion-option>
+      </ion-select>
+    </ion-item>
+		<hr/>
+    <ion-item no-lines>
+      <ion-icon name="calendar" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">Data </ion-label>
+      <ion-input type="date" [(ngModel)]="date"></ion-input>
+    </ion-item>
+	</ion-list>
+	<ion-fab bottom right >
+    <button color="accent" ion-fab><ion-icon name="send" color="white"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="danger"><ion-icon name="logo-googleplus" color="white"></ion-icon></button>
+			<button ion-fab style="background:#6a026e;"><ion-icon name="logo-yahoo" color="white"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+<!--
     <form #FormCadastro="ngForm" (ngSubmit)="postDados(FormCadastro)">
         <ion-list>
             <ion-item>
@@ -60,5 +110,5 @@
                 <button [disabled]="cadastro.invalid" ion-button full block color="danger" large>Enviar</button>
             </ion-item>
         </ion-list>
-    </form>
+    </form>-->
 </ion-content>
