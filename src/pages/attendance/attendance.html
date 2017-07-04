@@ -8,25 +8,25 @@
 </ion-header>
 
 <ion-content>
-	<ion-list padding-top>
-		<ion-item text-wrap no-lines>
+    <ion-list padding-top>
+	<ion-item text-wrap no-lines>
       <ion-icon name="person" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Nome </ion-label>
       <ion-input type="tel" [(ngModel)]="fullname"></ion-input>
     </ion-item>
     <hr/>
-		<ion-item text-wrap no-lines>
+	<ion-item text-wrap no-lines>
       <ion-icon name="mail" item-left></ion-icon>
       <ion-label style="font-size: 16px;">E-mail </ion-label>
       <ion-input type="tel" [(ngModel)]="email"></ion-input>
     </ion-item>
-		<ion-item text-wrap no-lines>
+	<ion-item text-wrap no-lines>
       <ion-icon name="" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Telefone </ion-label>
       <ion-input type="tel" [(ngModel)]="phone"></ion-input>
     </ion-item>
-		<hr/>
-		<ion-item no-lines text-wrap>
+	<hr/>
+	<ion-item no-lines text-wrap>
       <ion-icon name="md-checkmark-circle-outline" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Objetivos </ion-label>
       <ion-select [(ngModel)]="goal" name="Objetivos" multiple="true" okText="Ok" cancelText="Cancelar">
@@ -43,7 +43,7 @@
         <ion-option value="Renda Variavel">Renda Variavel</ion-option>
       </ion-select>
     </ion-item>
-		<hr/>
+	<hr/>
     <ion-item no-lines>
       <ion-icon name="calendar" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Data </ion-label>
@@ -51,12 +51,8 @@
     </ion-item>
 	</ion-list>
 	<ion-fab bottom right >
-    <button color="accent" ion-fab><ion-icon name="send" color="white"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab color="danger"><ion-icon name="logo-googleplus" color="white"></ion-icon></button>
-			<button ion-fab style="background:#6a026e;"><ion-icon name="logo-yahoo" color="white"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
+        <button color="accent" ion-fab><ion-icon name="send" color="white"></ion-icon></button>
+    </ion-fab>
 <!--
     <form #FormCadastro="ngForm" (ngSubmit)="postDados(FormCadastro)">
         <ion-list>
