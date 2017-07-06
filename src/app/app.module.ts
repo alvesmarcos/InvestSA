@@ -26,6 +26,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseService } from '../providers/firebase-service';
 import { Facebook } from '@ionic-native/facebook';
 
+import { EmailComposer } from '@ionic-native/email-composer';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyAOeyA8mbblOh2AV_tZp7ykzoP26kjHry4",
   authDomain: "invest-sa.firebaseapp.com",
@@ -80,7 +82,8 @@ export const firebaseConfig = {
     SplashScreen,
     FirebaseService,
     Facebook,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    EmailComposer
   ]
 })
 export class AppModule {

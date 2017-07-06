@@ -12,18 +12,18 @@
 	<ion-item text-wrap no-lines>
       <ion-icon name="person" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Nome </ion-label>
-      <ion-input type="tel" [(ngModel)]="fullname"></ion-input>
+      <ion-input type="tel" [(ngModel)]="dataEmail.fullname" ></ion-input>
     </ion-item>
     <hr/>
 	<ion-item text-wrap no-lines>
       <ion-icon name="mail" item-left></ion-icon>
       <ion-label style="font-size: 16px;">E-mail </ion-label>
-      <ion-input type="tel" [(ngModel)]="email"></ion-input>
+      <ion-input type="tel" [(ngModel)]="dataEmail.Email"></ion-input>
     </ion-item>
 	<ion-item text-wrap no-lines>
       <ion-icon name="" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Telefone </ion-label>
-      <ion-input type="tel" [(ngModel)]="phone"></ion-input>
+      <ion-input type="tel" [(ngModel)]="dataEmail.phone"></ion-input>
     </ion-item>
 	<hr/>
 	<ion-item no-lines text-wrap>
@@ -50,9 +50,10 @@
       <ion-input type="date" [(ngModel)]="date"></ion-input>
     </ion-item>
 	</ion-list>
-	<ion-fab bottom right >
+  <button ion-button color="accent" block (click)="sendEmail()">Enviar</button>
+  <!--ion-fab bottom right >
         <button color="accent" ion-fab><ion-icon name="send" color="white"></ion-icon></button>
-    </ion-fab>
+  </ion-fab-->
 <!--
     <form #FormCadastro="ngForm" (ngSubmit)="postDados(FormCadastro)">
         <ion-list>
