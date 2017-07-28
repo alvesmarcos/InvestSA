@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -6,7 +7,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { AnalysisPage } from '../pages/analysis/analysis';
 import { MyInvestimentsPage } from '../pages/my-investiments/my-investiments';
-import { LoginPage } from '../pages/login/login';
 import { AttendancePage } from '../pages/attendance/attendance';
 import { About } from '../pages/about/about';
 import { MarketPage } from '../pages/market/market';
@@ -35,10 +35,11 @@ export class MyApp {
 
     /* Verifica se usuario esta logado e set Pagina Inicial */
     const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
-      this.ngZone.run( () => {
+      this.ngZone.run( () => {        
         if (!user) {
           console.log('user not logged');
-          this.rootPage = HomePage;
+          //this.rootPage = HomePage;
+          this.rootPage = LoginPage;
           unsubscribe();
         } else {
           console.log('user logged');

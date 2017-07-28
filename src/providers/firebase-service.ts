@@ -3,8 +3,8 @@ import 'rxjs/add/operator/map';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-//import * as firebase from 'firebase/app';
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+//import firebase from 'firebase';
 import { Credential } from '../model/credential';
 import { User } from '../model/user';
 
@@ -17,8 +17,7 @@ export class FirebaseService {
   userProfile: any = null;
 
   constructor(public afAuth: AngularFireAuth,
-              public db: AngularFireDatabase, private fb: Facebook) {
-
+              public db: AngularFireDatabase, private fb: Facebook) {      
       this.users = db.list('/users');
   }
 
@@ -32,9 +31,9 @@ export class FirebaseService {
       });
   }
 
-  loginWithFacebook(isSucess): void{
+  loginWithFacebook(isSuccess): void{
 
-    this.fb.login(['email']).then( (response) => {
+    this.fb.login(['public_profile', 'email']).then( (response) => {
         const facebookCredential = firebase.auth.FacebookAuthProvider
             .credential(response.authResponse.accessToken);
 
@@ -42,39 +41,56 @@ export class FirebaseService {
         .then((success) => {
             console.log("Firebase success: " + JSON.stringify(success));
             this.userProfile = success;
-            isSucess(true, success);
+            isSuccess(true, success);
+
+            //Criar user no DB
+            let ref = this.db.database.ref('/users');
+            ref.once('value')
+              .then(snap => {
+                let exists = false;
+                snap.forEach(childSnap => {
+                  if (childSnap.val().email === success.email) {
+                    exists = true;
+                    isSuccess(true, success);
+                    return true;
+                  } //Usuario ja cadastrado
+                });
+                if (!exists) {
+                  let newUserKey = ref.push().key;
+                  let u = {
+                    email: success.email,
+                    name: success.displayName,
+                    authUid: success.uid,
+                    uid: newUserKey
+                  };
+                  //Salva novo usuario
+                  ref.child(newUserKey).update(u)
+                    .then(() => {
+                      isSuccess(true, success);
+                    })
+                    .catch(e => isSuccess(false, e));
+                }
+              });
         })
         .catch((error) => {
             console.log("Firebase failure: " + JSON.stringify(error));
-            isSucess(false, error);
+            isSuccess(false, error);
         });
 
-    }).catch((error) => { console.log(error); isSucess(false, error); });
+    }).catch((error) => { console.log(error); isSuccess(false, error); });
 
-    // this.fb.login(['email'])
-    //  .then((_response) => {
-    //    console.log(_response);
-    //    var creds = firebase.auth.FacebookAuthProvider.credential(_response.authResponse.accessToken);
-    //    return this.afAuth.auth.signInWithCredential(creds);
-    //  }).then((authData) => {
-    //    console.log(authData);
-    //    isSucess(true, authData);
-    //  }).catch((error) => {
-    //    console.log(error);
-    //    isSucess(false, error);
-    //  });
   }
 
-  createUserWithCredential(user:User, credential:Credential, isSucess){
+  createUserWithCredential(user:User, credential:Credential, isSuccess){
     this.afAuth.auth.createUserWithEmailAndPassword(credential.email, credential.password)
       .then(result => {
         //sucesso! Registrar usuario no RealTimeDB
         console.log("User registered: "+user);
         this.users.push(user).then(result => console.log("Salvo com sucesso no DB")).catch(error => console.log(error));
-        isSucess(true, result);
+        isSuccess(true, result);
       })
       .catch(error => {
-        isSucess(false, error);
+        isSuccess(false, error);
       });
   }
 
