@@ -1,10 +1,11 @@
+import { Investiment } from './../model/investiment';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-//import firebase from 'firebase';
+// import * as firebase from 'firebase/app';
+import firebase from 'firebase';
 import { Credential } from '../model/credential';
 import { User } from '../model/user';
 
@@ -14,11 +15,13 @@ import { Facebook } from '@ionic-native/facebook';
 export class FirebaseService {
 
   users:FirebaseListObservable<any>;
+  usersRef: any;
   userProfile: any = null;
 
   constructor(public afAuth: AngularFireAuth,
               public db: AngularFireDatabase, private fb: Facebook) {      
       this.users = db.list('/users');
+      this.usersRef = this.db.database.ref('/users');
   }
 
   loginWithCredential(credential:Credential, isSuccess){
@@ -43,9 +46,8 @@ export class FirebaseService {
             this.userProfile = success;
             isSuccess(true, success);
 
-            //Criar user no DB
-            let ref = this.db.database.ref('/users');
-            ref.once('value')
+            //Criar user no DB            
+            this.usersRef.once('value')
               .then(snap => {
                 let exists = false;
                 snap.forEach(childSnap => {
@@ -56,7 +58,7 @@ export class FirebaseService {
                   } //Usuario ja cadastrado
                 });
                 if (!exists) {
-                  let newUserKey = ref.push().key;
+                  let newUserKey = this.usersRef.push().key;
                   let u = {
                     email: success.email,
                     name: success.displayName,
@@ -64,7 +66,7 @@ export class FirebaseService {
                     uid: newUserKey
                   };
                   //Salva novo usuario
-                  ref.child(newUserKey).update(u)
+                  this.usersRef.child(newUserKey).update(u)
                     .then(() => {
                       isSuccess(true, success);
                     })
@@ -104,4 +106,44 @@ export class FirebaseService {
     return this.afAuth.auth.currentUser;
   }
 
+  /////////// My Investiments
+  saveMyInvestiments(investiment: Investiment, isSuccess) {
+    this.usersRef.once('value')
+              .then(snap => {
+                snap.forEach(childSnap => {
+                  if (childSnap.val().email === this.getCurrentUser().email) {                    
+                    // usuario atual
+                    let currentUserUid = childSnap.getRef().path.pieces_[1];
+                    this.db.database.ref('users/' + currentUserUid + '/my_investiments')
+                      .push(investiment)
+                        .then( isSuccess(true) )
+                        .catch( error => isSuccess(false, error));
+                    return true;
+                  }
+                });
+              });
+  }
+  
+  getMyInvestiments(ret) {
+
+    let myInvestiments = [];
+    this.usersRef.once('value')
+      .then(snap => {
+        snap.forEach(childSnap => {
+          if (childSnap.val().email === this.getCurrentUser().email) {                    
+            // usuario atual
+            let currentUserUid = childSnap.getRef().path.pieces_[1];
+            this.db.database.ref('users/'+currentUserUid+'/my_investiments')
+              .once('value').then(snap => {
+                snap.forEach(childSnap => {
+                  myInvestiments.push(childSnap.val());
+                });
+                ret(myInvestiments);
+              });
+            return true;
+          }
+        });
+      });      
+  }
+    
 }

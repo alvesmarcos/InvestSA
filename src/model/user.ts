@@ -2,6 +2,6 @@ import { Investiment } from './investiment';
 export class User {
   name:string;
   email:string;
-  investiments:Array<Investiment>;
+  my_investiments:Array<Investiment>;
   uid:string;
 }

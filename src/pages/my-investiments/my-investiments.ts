@@ -1,5 +1,8 @@
+import { ConnectivityService } from './../../providers/connectivity-service';
+import { Network } from '@ionic-native/network';
+import { FirebaseService } from './../../providers/firebase-service';
 import { Component, ViewChild,  AfterViewInit, ElementRef } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, Loading, ToastController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 
 import { Investiment } from '../../model/investiment';
@@ -18,18 +21,26 @@ export class  MyInvestimentsPage implements AfterViewInit {
   existElement: boolean;
   categories: string;
   counter: Map<string, number>; // Map
+  loading: Loading;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    this.investiments = []; 
-                        // [{title: 'Tesouro PREFIXADO', expirationDate: '15/05/2019', quantityPurchased: 3,
-                        //  valueTitle: 0.58, administrationFee: 0.02, purchaseRate: 2.23, purchaseDate: '25/06/2016', 
-                        //  paid: 10.20},
-                        //  {title: 'Tesouro SELIC', expirationDate: '15/05/2018', quantityPurchased: 1,
-                        //  valueTitle: 3.51, administrationFee: 1, purchaseRate: 4.32, purchaseDate: '01/06/2016', 
-                        //  paid: 9.15},
-                        //  {title: 'Tesouro IPCA', expirationDate: '12/07/2017', quantityPurchased: 6,
-                        //  valueTitle: 1.57, administrationFee: 0.21, purchaseRate: 4.10, purchaseDate: '11/06/2015', 
-                        //  paid: 7.35}]; 
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, 
+              public firebaseService: FirebaseService, public loadingCtrl: LoadingController,
+              private network: Network, public toastCtrl: ToastController, public connectivityService: ConnectivityService) {
+    
+    // Recupera investimentos do usuario atual
+
+    // this.investiments =  
+    //                     [{title: 'Tesouro PREFIXADO', expirationDate: '15/05/2019', quantityPurchased: 3,
+    //                      valueTitle: 0.58, administrationFee: 0.02, purchaseRate: 2.23, purchaseDate: '25/06/2016', 
+    //                      paid: 10.20},
+    //                      {title: 'Tesouro SELIC', expirationDate: '15/05/2018', quantityPurchased: 1,
+    //                      valueTitle: 3.51, administrationFee: 1, purchaseRate: 4.32, purchaseDate: '01/06/2016', 
+    //                      paid: 9.15},
+    //                      {title: 'Tesouro IPCA', expirationDate: '12/07/2017', quantityPurchased: 6,
+    //                      valueTitle: 1.57, administrationFee: 0.21, purchaseRate: 4.10, purchaseDate: '11/06/2015', 
+    //                      paid: 7.35}]; 
+    this.investiments = [];
+    this.existElement = true;
     this.categories = "geral";
     this.counter = new Map([
       ['Tesouro IPCA', 0],
@@ -41,8 +52,32 @@ export class  MyInvestimentsPage implements AfterViewInit {
     ]);
   }
 
+  ionViewDidLoad(){
+    // if (this.connectivityService.isOnline()) {
+    //   this.presentToast('Voce esta conectado!')
+    // }
+    // else {
+    //   this.presentToast('Voce esta offline!')
+    // }
+  }
+
   ngAfterViewInit() {
-     this.checkIfExistElement();
+
+    if (this.connectivityService.isOnline()) {
+      this.createLoader('Carregando Meus Investimentos...')
+      this.loading.present().then(() => {
+        this.firebaseService.getMyInvestiments(myInv => {
+          this.investiments = myInv;
+          this.checkIfExistElement();
+          this.loading.dismiss();
+        });  
+      });
+    }
+    else {
+      this.presentToast('Erro! Conecte-se à internet e tente novamente!')
+    }
+    
+
   }
 
   showDetailsInvestiment(investiment: Investiment) {
@@ -88,4 +123,20 @@ export class  MyInvestimentsPage implements AfterViewInit {
       }
     });
   }
+
+  // Helper Functions
+  createLoader(message: string = "Carregando...") { // Optional Parameter
+     this.loading = this.loadingCtrl.create({
+       content: message,
+       spinner: 'crescent'
+     });
+  }
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'middle'
+    });
+    toast.present();
+  }  
 }
