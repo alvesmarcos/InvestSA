@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="theme">
     <ion-item color="theme" no-lines>
       <ion-icon name="close" color="dark" item-left (click)="close()"></ion-icon>
       <ion-title>Adicionar Título</ion-title>
@@ -54,13 +54,13 @@
     <hr/>
     <ion-item no-lines text-wrap>
       <ion-icon name="logo-usd" item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Valor investido  </ion-label>
-      <ion-input type="tel" [(ngModel)]="investiment.paid"></ion-input>
+      <ion-label style="font-size: 16px;">Valor do título  </ion-label>
+      <ion-input type="tel" [(ngModel)]="investiment.valueTitle"></ion-input>
     </ion-item>
     <ion-item no-lines text-wrap no-lines>
       <ion-icon item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Valor do título  </ion-label>
-      <ion-input type="tel" [(ngModel)]="investiment.valueTitle"></ion-input>
+      <ion-label style="font-size: 16px;">Valor investido  </ion-label>
+      <ion-input type="tel" [(ngModel)]="investiment.paid"></ion-input>
     </ion-item>
     <ion-item no-lines text-wrap no-lines></ion-item>
   </ion-list>

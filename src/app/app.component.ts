@@ -1,6 +1,6 @@
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -29,13 +29,14 @@ export class MyApp {
               public splashScreen: SplashScreen,
               public firebase: FirebaseService,
               public afAuth: AngularFireAuth,
-              public ngZone:NgZone) {
+              public ngZone:NgZone,
+              public modalCtrl: ModalController) {
 
     this.initializeApp();
 
     /* Verifica se usuario esta logado e set Pagina Inicial */
     const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
-      this.ngZone.run( () => {        
+      this.ngZone.run( () => {
         if (!user) {
           console.log('user not logged');
           //this.rootPage = HomePage;
@@ -74,7 +75,12 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
+    if(page.component == AttendancePage || page.component == About) {
+      let modal = this.modalCtrl.create(page.component);
+      modal.present();
+    } else {
+      this.nav.setRoot(page.component);
+    }
   }
 
   logout() {

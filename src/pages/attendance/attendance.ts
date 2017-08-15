@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController ,MenuController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { EmailComposer } from '@ionic-native/email-composer';
 
@@ -22,9 +20,7 @@ export class AttendancePage {
     date: '',
   }
 
-  constructor(public navCtrl: NavController, public menuCtrl: MenuController, private emailComposer: EmailComposer) {
-    this.menuCtrl.enable(false);
-  }
+  constructor(public navCtrl: NavController, private emailComposer: EmailComposer, private viewCtrl: ViewController) {}
 
   postDados(req){
     console.log(req);
@@ -32,7 +28,7 @@ export class AttendancePage {
 
   sendEmail(){
     let email = {
-      to: 'diego.filipe@cc.ci.ufpb.br', // coloca teu email aqui pra testar
+      to: 'salaacoes@yahoo.com.br', // coloca teu email aqui pra testar
       cc: this.dataEmail.Email,
       subject: 'Agendamento de Consultoria',
       body: 'Olá meu nome é: '+ this.dataEmail.fullname + ', e eu gostaria de agendar uma consultoria com a sala de ações na seguinte data: '
@@ -43,7 +39,6 @@ export class AttendancePage {
   }
 
   closeAttendace() {
-    this.menuCtrl.enable(true);
-    this.navCtrl.setRoot(HomePage);
+    this.viewCtrl.dismiss();
   }
 }

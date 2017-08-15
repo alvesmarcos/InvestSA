@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, ViewController } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { NavController, ViewController } from 'ionic-angular';
 
 @Component({
   selector: 'page-about',
@@ -8,9 +7,9 @@ import { HomePage } from '../home/home';
 })
 export class About {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public viewCtrl: ViewController) {}
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController) {}
 
   closeAbout() {
-     this.navCtrl.setRoot(HomePage);
+    this.viewCtrl.dismiss();
   }
 }

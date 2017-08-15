@@ -4,6 +4,11 @@
       <ion-icon name="close" color="dark" item-left (click)="closeAttendace()"></ion-icon>
       <ion-title>Atendimento</ion-title>
     </ion-item>
+    <ion-buttons end>
+      <button ion-button>
+        <ion-icon color="dark" name="send" (click)="sendEmail()"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -50,62 +55,4 @@
       <ion-input type="date" [(ngModel)]="date"></ion-input>
     </ion-item>
 	</ion-list>
-  <button ion-button color="accent" block (click)="sendEmail()">Enviar</button>
-  <!--ion-fab bottom right >
-        <button color="accent" ion-fab><ion-icon name="send" color="white"></ion-icon></button>
-  </ion-fab-->
-<!--
-    <form #FormCadastro="ngForm" (ngSubmit)="postDados(FormCadastro)">
-        <ion-list>
-            <ion-item>
-                <ion-label floating>Nome Completo</ion-label>
-                <ion-input type="text" name="nome" ngModel #nome="ngModel"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Telefone</ion-label>
-                <ion-input type="tel" name="telefone" ngModel #telefone="ngModel"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Email</ion-label>
-                <ion-input type="email" name="email" ngModel #email="ngModel"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Objetivos:</ion-label>
-                <ion-select [(ngModel)]="objetivos" name="objetivos" multiple="true" okText="Okay" cancelText="Dismiss">
-                    <ion-option>Finanças Pessoais</ion-option>
-                    <ion-option>Investimentos</ion-option>
-                    <ion-option>Outras modalidades de EDUCAÇÃO FINANCEIRA</ion-option>
-                    <ion-option>Sistema Financeiro Nacional</ion-option>
-                    <ion-option>Mercado de Capitais</ion-option>
-                    <ion-option>Seleção de Ativos</ion-option>
-                    <ion-option>Analise Fundamentalista</ion-option>
-                    <ion-option>Analise Gráfica</ion-option>
-                    <ion-option>Análise das Demonstrações Financeiras</ion-option>
-                    <ion-option>Renda Fixa</ion-option>
-                    <ion-option>Renda Variavel</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Data</ion-label>
-                <ion-input type="date" name="data" ngModel #nome="ngModel"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Horário:</ion-label>
-                <ion-select [(ngModel)]="horario" name="horario" okText="Okay" cancelText="Dismiss">
-                    <ion-option>08:00</ion-option>
-                    <ion-option>09:00</ion-option>
-                    <ion-option>11:00</ion-option>
-                    <ion-option>14:00</ion-option>
-                    <ion-option>15:00</ion-option>
-                    <ion-option>16:00</ion-option>
-                    <ion-option>17:00</ion-option>
-                    <ion-option>18:00</ion-option>
-                    <ion-option>19:00</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item>
-                <button [disabled]="cadastro.invalid" ion-button full block color="danger" large>Enviar</button>
-            </ion-item>
-        </ion-list>
-    </form>-->
 </ion-content>
