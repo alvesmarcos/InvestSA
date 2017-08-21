@@ -15,24 +15,15 @@
 
 <ion-content class="background">
   <!-- Atualizar cards dinâmicamente -->
-  <ion-card>
-    <img src="assets/image/slide01.png"/>
-    <ion-card-content>
-      <ion-card-title>
-        Radar Econômico
-      </ion-card-title>
-      <p>Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus.
-         Interagi no mé, cursus quis, vehicula ac nisi.</p>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="assets/image/slide02.png"/>
-    <ion-card-content>
-      <ion-card-title>
-        Investimentos
-      </ion-card-title>
-      <p>Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus.
-         Interagi no mé, cursus quis, vehicula ac nisi.</p>
-    </ion-card-content>
-  </ion-card>
+  <div *ngFor="let item of analysis">
+    <ion-card>
+      <img src= {{item.images[0]}}/>
+      <ion-card-content>
+        <ion-card-title>
+          {{item.title}}
+        </ion-card-title>
+          {{item.body}}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
+import { HttpModule } from '@angular/http';
 
 import { InputMask } from '../pages/attendance/masks';
 
@@ -29,7 +30,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseService } from '../providers/firebase-service';
 import { Facebook } from '@ionic-native/facebook';
-
+import { AnalysisModel } from '../model/analysis.model';
+import { AnalysisService } from '../providers/analysis.service';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 export const firebaseConfig = {
@@ -64,7 +66,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -90,6 +93,7 @@ export const firebaseConfig = {
     Network,
     Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AnalysisService,
     EmailComposer
   ]
 })
