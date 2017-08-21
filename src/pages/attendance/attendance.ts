@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ViewController } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 @Component({
@@ -10,7 +9,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
 })
 
 export class AttendancePage {
-  cadastro: any = {};
+  masksPhoneNumber: any;
+
   //private todo : FormGroup;
   dataEmail = {
     fullname: '',
@@ -20,7 +20,9 @@ export class AttendancePage {
     date: '',
   }
 
-  constructor(public navCtrl: NavController, private emailComposer: EmailComposer, private viewCtrl: ViewController) {}
+  constructor(public navCtrl: NavController, private emailComposer: EmailComposer, private viewCtrl: ViewController) {
+    this.masksPhoneNumber = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  }
 
   postDados(req){
     console.log(req);

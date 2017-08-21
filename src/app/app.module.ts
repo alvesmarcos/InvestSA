@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
 
+import { InputMask } from '../pages/attendance/masks';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AnalysisPage } from '../pages/analysis/analysis';
@@ -54,7 +56,8 @@ export const firebaseConfig = {
     About,
     MarketPage,
     DetailsMarketModal,
-    InvestimentsPage
+    InvestimentsPage,
+    InputMask
   ],
   imports: [
     BrowserModule,
