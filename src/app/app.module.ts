@@ -31,7 +31,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseService } from '../providers/firebase-service';
 import { Facebook } from '@ionic-native/facebook';
-
+import { AnalysisModel } from '../model/analysis.model';
+import { AnalysisService } from '../providers/analysis.service';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 export const firebaseConfig = {
@@ -67,7 +68,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -94,6 +96,7 @@ export const firebaseConfig = {
     Network,
     Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AnalysisService,
     EmailComposer
   ]
 })
