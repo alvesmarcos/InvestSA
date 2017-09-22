@@ -1,4 +1,5 @@
 export class Investiment {
+  _id: string;
   title: string;
   expirationDate: string;
   quantityPurchased: number;

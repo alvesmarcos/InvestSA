@@ -80,8 +80,18 @@ export class  MyInvestimentsPage implements AfterViewInit {
 
   }
 
+  refreshPage() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
+
   showDetailsInvestiment(investiment: Investiment) {
     let modal = this.modalCtrl.create(PreviewInvestimentModal, {investiment: investiment});
+    
+    modal.onDidDismiss(data => {
+      if (data)
+        this.refreshPage()
+    })
+    
     modal.present();
   }
 
