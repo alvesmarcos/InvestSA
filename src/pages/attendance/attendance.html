@@ -5,15 +5,15 @@
       <ion-title>Atendimento</ion-title>
     </ion-item>
     <ion-buttons end>
-      <button ion-button>
-        <ion-icon color="dark" name="send" (click)="sendEmail()"></ion-icon>
+      <button ion-button [disabled]="!cadastro.valid">
+        <ion-icon color="dark" name="send" (click)="sendEmail()" ></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list padding-top>
+<!--    <ion-list padding-top>
 	<ion-item text-wrap no-lines>
       <ion-icon name="person" item-left></ion-icon>
       <ion-label style="font-size: 16px;">Nome </ion-label>
@@ -23,12 +23,12 @@
 	<ion-item text-wrap no-lines>
     <ion-icon name="mail" item-left></ion-icon>
     <ion-label style="font-size: 16px;">E-mail </ion-label>
-    <ion-input type="text" [(ngModel)]="dataEmail.Email"></ion-input>
+    <ion-input type="text" [(ngModel)]="dataEmail.Email" required></ion-input>
   </ion-item>
   <ion-item text-wrap no-lines>
-    <ion-icon name="" item-left></ion-icon>
+    <ion-icon name="phone" item-left></ion-icon>
     <ion-label style="font-size: 16px;">Telefone </ion-label>
-    <ion-input placeholder="(xx) x xxx-xxxx" mask="(**) * ****-****" type="tel" [(ngModel)]="dataEmail.phone"></ion-input>
+    <ion-input placeholder="(xx) x xxxx-xxxx" mask="(**) * ****-****" type="tel" [(ngModel)]="dataEmail.phone"></ion-input>
   </ion-item>
 	<hr/>
 	<ion-item no-lines text-wrap>
@@ -54,5 +54,53 @@
       <ion-label style="font-size: 16px;">Data </ion-label>
       <ion-input type="date" [(ngModel)]="date"></ion-input>
     </ion-item>
-	</ion-list>
+	</ion-list>-->
+
+<form (ngSubmit)="sendEmail()" [formGroup]="cadastro">
+  <ion-list padding-top>
+    <ion-item text-wrap no-lines>
+      <ion-icon name="person" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">Nome </ion-label>
+      <ion-input type="text" placeholder="Nome" name="nome" formControlName="nome"></ion-input>
+    </ion-item>
+    <hr/>
+    <ion-item text-wrap no-lines>
+      <ion-icon name="mail" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">E-mail </ion-label>
+      <ion-input type="email" placeholder="Email" name="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item text-wrap no-lines>
+      <ion-icon name="phone" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">Telefone </ion-label>
+      <ion-input type="number" placeholder="(xx)xxxxx-xxxx" name="phone" formControlName="phone" maxlength="11"></ion-input>
+    </ion-item>
+    <hr/>
+    <ion-item no-lines text-wrap>
+        <ion-icon name="md-checkmark-circle-outline" item-left></ion-icon>
+        <ion-label style="font-size: 16px;">Objetivos </ion-label>
+        <ion-select name="Objetivos" formControlName="goal" multiple="true" okText="Ok" cancelText="Cancelar">
+        	<ion-option value=" Finanças Pessoais">Finanças Pessoais</ion-option>
+          <ion-option value=" Investimentos">Investimentos</ion-option>
+          <ion-option value=" Outras modalidades de Educação Financeira">Outras modalidades de Educação Financeira</ion-option>
+          <ion-option value=" Sistema Financeiro Nacional">Sistema Financeiro Nacional</ion-option>
+          <ion-option value=" Mercado de Capitais">Mercado de Capitais</ion-option>
+          <ion-option value=" Seleção de Ativos">Seleção de Ativos</ion-option>
+          <ion-option value=" Analise Fundamentalista">Analise Fundamentalista</ion-option>
+          <ion-option value=" Analise Gráfica">Analise Gráfica</ion-option>
+          <ion-option value=" Análise das Demonstrações Financeiras">Análise das Demonstrações Financeiras</ion-option>
+          <ion-option value=" Renda Fixa">Renda Fixa</ion-option>
+          <ion-option value=" Renda Variavel">Renda Variavel</ion-option>
+        </ion-select>
+      </ion-item>
+  	<hr/>
+    <ion-item no-lines>
+      <ion-icon name="calendar" item-left></ion-icon>
+      <ion-label style="font-size: 16px;">Data </ion-label>
+      <ion-input type="date" formControlName="date"></ion-input>
+    </ion-item>
+    <!--<ion-item>
+      <button ion-button [disabled]="!cadastro.valid" fulll block color="danger">enviar</button>
+    </ion-item>-->
+  </ion-list>
+</form>
 </ion-content>
