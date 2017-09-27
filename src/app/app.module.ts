@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
 import { HttpModule } from '@angular/http';
-
+import { TextMaskModule } from 'angular2-text-mask';
 import { InputMask } from '../pages/attendance/masks';
 import { MarketService } from '../providers/market.service';
 
@@ -65,6 +65,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     HttpModule,
+    TextMaskModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,

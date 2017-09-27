@@ -18,7 +18,7 @@
       <ion-segment-button value="geral">
         Geral
       </ion-segment-button>
-      <ion-segment-button  value="graficos">
+      <ion-segment-button  value="graficos" (click)="inflateChart()">
         Gráficos
       </ion-segment-button>
     </ion-segment>
@@ -47,13 +47,8 @@
         <h2>Gráficos</h2>
         <p>Visualize seus investimentos no formato de gráficos</p>
       </div>
-      <div [hidden]="!existElement">
-        <ion-card>
-          <ion-card-header>Investimentos Cadastrados</ion-card-header>
-            <ion-card-content>
-              <canvas #donutCanvas></canvas>
-            </ion-card-content>
-          </ion-card>
+      <div [hidden]="!existElement" padding>
+        <canvas #donutCanvas height="350" ></canvas>
       </div>
     </div>
   <ion-fab right bottom>

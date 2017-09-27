@@ -28,8 +28,11 @@
   <ion-item text-wrap no-lines>
     <ion-icon name="" item-left></ion-icon>
     <ion-label style="font-size: 16px;">Telefone </ion-label>
-    <ion-input placeholder="(xx) x xxx-xxxx" mask="(**) * ****-****" type="tel" [(ngModel)]="dataEmail.phone"></ion-input>
+    <ion-input [textMask]="{mask: masksPhoneNumber}" [(ngModel)]="dataEmail.phone" type="tel"></ion-input>
+
   </ion-item>
+    <input placeholder="(xx) x xxx-xxxx"  [textMask]="{mask: masksPhoneNumber}" type="tel" [(ngModel)]="dataEmail.phone"/>
+   
 	<hr/>
 	<ion-item no-lines text-wrap>
       <ion-icon name="md-checkmark-circle-outline" item-left></ion-icon>
