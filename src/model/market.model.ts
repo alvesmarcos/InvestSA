@@ -1,6 +1,5 @@
 export class SampleModel {
   id: number;
-  referIndicator: number;
   date: string;
   value: string;
 }

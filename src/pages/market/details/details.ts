@@ -1,5 +1,6 @@
 import { Component,ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
+import { MarketModel } from '../../../model/market.model';
 
 import { Chart } from 'chart.js';
 
@@ -9,9 +10,14 @@ import { Chart } from 'chart.js';
 })
 export class DetailsMarketModal implements AfterViewInit {
   @ViewChild('lineCanvas') lineCanvas: ElementRef;
-	lineChart: any;
+  lineChart: any;
+  marketDetails: MarketModel;
+  iconToColor: Map<string, string>;
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams) {}
+  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
+    this.marketDetails = this.navParams.get('marketDetails');
+    this.iconToColor = this.navParams.get('iconToColor');
+  }
 
   close() {
     this.viewCtrl.dismiss();
@@ -25,11 +31,15 @@ export class DetailsMarketModal implements AfterViewInit {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: ["03/06", "12/06", "20/06"],
+        labels: [this.marketDetails.samples[this.marketDetails.samples.length-3].date, 
+                 this.marketDetails.samples[this.marketDetails.samples.length-2].date,
+                 this.marketDetails.samples[this.marketDetails.samples.length-1].date],
         datasets: [{
-          data: [8.41, 7.75, 8.03],
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          data: [this.marketDetails.samples[this.marketDetails.samples.length-3].value,
+                this.marketDetails.samples[this.marketDetails.samples.length-2].value,
+                this.marketDetails.samples[this.marketDetails.samples.length-1].value],
+          backgroundColor: 'rgba(15, 169, 249, 0.2)',
+          borderColor: 'rgba(15, 169, 249, 1)',
 					fill: false
         }]
       }, 

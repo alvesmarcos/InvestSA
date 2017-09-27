@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-const URLSERVER = "http://192.168.1.144:8080/api/v1/indicators";
+const URLSERVER = "http://localhost:3000/v1/indicators";
 
 @Injectable()
 export class MarketService {

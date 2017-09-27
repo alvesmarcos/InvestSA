@@ -12,10 +12,10 @@
     <ion-card-content>
       <ion-item>
         <p>Semana Atual</p>
-        <h1>{{'IPCA'}}</h1>
-        <ion-icon name="arrow-round-up" color="free" item-right></ion-icon>
+        <h1>{{marketDetails.name}}</h1>
+        <ion-icon [name]="marketDetails.status" [color]="iconToColor.get(marketDetails.status)" item-right></ion-icon>
       </ion-item>
-      <p padding-left padding-right>O IPCA é um índice criado para medir a variação de preços do mercado para o consumidor final, e representa o índice oficial da inflação no Brasil. IPCA significa Índice de Preços ao Consumidor e é medido mês a mês pelo IBGE.</p>
+      <p padding-left padding-right>{{marketDetails.description}}</p>
     </ion-card-content>
   </ion-card>
   <ion-card>

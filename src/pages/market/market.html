@@ -27,83 +27,20 @@
           Semana Atual
         </ion-label>
       </ion-item>
-      <div class="div-hr"></div>
-      <ion-item no-lines (click)="showDetailsMarket()" text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          IPCA (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'0,32'}}
-          <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-      <div class="div-hr"></div>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          IGP-DI (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'1,62'}}
-          <ion-icon name="arrow-round-down" color="danger" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-      <div class="div-hr"></div>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          Selic (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'8,50'}}
-          <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-      <div class="div-hr"></div>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          PIB (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'0,49'}}
-          <ion-icon name="arrow-round-down" color="danger" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-      <div class="div-hr"></div>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          Dívida Líquida do Setor Público (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'51,50'}}
-          <ion-icon name="remove" color="dark" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-      <div class="div-hr"></div>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          Câmbio (R$/US$)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'3,25'}}
-          <ion-icon name="arrow-round-down" color="danger" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-       <div class="div-hr"></div>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          Balança Comercial US$ (bilhões)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'56,20'}}
-          <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
+      <hr/>
+      <div *ngFor="let m of market">
+        <ion-item no-lines (click)="showDetailsMarket(m)" text-wrap>
+          <ion-label color="dark" padding-left item-left>
+            {{m.name}}
+          </ion-label>
+          <ion-label padding-left color="dark">
+            <ion-icon name="" padding-right></ion-icon>
+            {{m.samples[m.samples.length-1].value}}
+            <ion-icon [name]="m.status" [color]="iconToColor.get(m.status)" padding-left></ion-icon>
+          </ion-label>
+        </ion-item>
+        <hr/>
+      </div>
     </ion-list>
     </ion-card-content>
   </ion-card>

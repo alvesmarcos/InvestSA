@@ -11,15 +11,22 @@ import { MarketService } from '../../providers/market.service';
 })
 export class MarketPage implements OnInit {
   market: MarketModel;
+	iconToColor: Map<string, string>;
 
-	constructor(public navCtrl: NavController, public modalCtrl: ModalController, public marketService: MarketService) {}
+	constructor(public navCtrl: NavController, public modalCtrl: ModalController, public marketService: MarketService) {
+		this.iconToColor = new Map();
+
+		this.iconToColor.set('arrow-round-down','danger');
+		this.iconToColor.set('arrow-round-up','free');	
+		this.iconToColor.set('remove','dark')
+	}
 
   ngOnInit() {
     this.marketService.getIndicators().subscribe(data => {this.market = data; console.log(data)});
   }
 
-	showDetailsMarket() {
-		let modal = this.modalCtrl.create(DetailsMarketModal);
+	showDetailsMarket(market) {
+		let modal = this.modalCtrl.create(DetailsMarketModal, {marketDetails: market, iconToColor: this.iconToColor});
 		modal.present();
 	}
 }

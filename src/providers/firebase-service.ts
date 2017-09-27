@@ -114,8 +114,12 @@ export class FirebaseService {
                   if (childSnap.val().email === this.getCurrentUser().email) {                    
                     // usuario atual
                     let currentUserUid = childSnap.getRef().path.pieces_[1];
+
+                    let investimentId = this.db.database.ref().push().key
+                    investiment._id = investimentId                     
+
                     this.db.database.ref('users/' + currentUserUid + '/my_investiments')
-                      .push(investiment)
+                    .child(investimentId).set(investiment)
                         .then( isSuccess(true) )
                         .catch( error => isSuccess(false, error));
                     return true;
@@ -144,6 +148,23 @@ export class FirebaseService {
           }
         });
       });      
+  }
+
+  removeMyInvestiment(investiment: Investiment, isSuccess) {
+    this.usersRef.once('value')
+    .then(snap => {
+      snap.forEach(childSnap => {
+        if (childSnap.val().email === this.getCurrentUser().email) {                    
+          // usuario atual
+          let currentUserUid = childSnap.getRef().path.pieces_[1];
+          this.db.database.ref('users/' + currentUserUid + '/my_investiments/' + investiment._id)
+            .remove()
+              .then( isSuccess(true) )
+              .catch( error => isSuccess(false, error));
+          return true;
+        }
+      });
+    });
   }
     
 }
