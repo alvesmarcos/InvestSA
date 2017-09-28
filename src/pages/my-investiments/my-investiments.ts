@@ -98,7 +98,6 @@ export class  MyInvestimentsPage implements AfterViewInit {
     modal.onDidDismiss(data => {
       if(data!=undefined) {
         this.investiments.push(data);
-        this.counter.set(data.title, this.counter.get(data.title) + 1);
       }
       this.checkIfExistElement();
     });
@@ -108,6 +107,7 @@ export class  MyInvestimentsPage implements AfterViewInit {
   private checkIfExistElement() {
     if(this.investiments.length > 0) {
       this.existElement = true;
+      this.inflateCounter();
       this.inflateChart();
     } else 
       this.existElement = false;
@@ -144,4 +144,11 @@ export class  MyInvestimentsPage implements AfterViewInit {
     });
     toast.present();
   }  
+
+  inflateCounter() {
+    for(let myInv of this.investiments) {
+      this.counter.set(myInv.title, this.counter.get(myInv.title) + 1);
+      console.log(this.counter);
+    }
+  }
 }
