@@ -12,7 +12,7 @@
   <ion-list padding-top>
     <ion-item text-wrap no-lines>
       <ion-icon name="trending-up" item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Selecione um título</ion-label>
+      <ion-label color="dark" style="font-size: 16px;">Selecione um título</ion-label>
       <ion-select color="dark" [(ngModel)]="investiment.title" selected>
         <ion-option value="CDB">CDB</ion-option>
         <ion-option value="LCI">LCI</ion-option>
@@ -20,44 +20,45 @@
       </ion-select>
     </ion-item>
     <hr/>
-    <ion-item text-wrap no-lines>
+    <ion-item text-wrap no-lines (click)="doPromptQtd()">
       <ion-icon name="pricetag" item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Quantidade comprada  </ion-label>
-      <ion-input type="tel" [(ngModel)]="investiment.quantityPurchased"></ion-input>
+      <ion-label style="font-size: 16px;">Qtd. comprada</ion-label>
+      <ion-label style="color: #999999; float: right; font-size: 16px;">{{investiment.quantityPurchased}}</ion-label>
     </ion-item>
     <hr/>
-    <ion-item no-lines text-wrap>
+    <ion-item no-lines text-wrap (click)="doPromptPurchaseDate()">
       <ion-icon name="calendar" item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Data da compra  </ion-label>
-      <ion-input type="date" [(ngModel)]="investiment.purchaseDate"></ion-input>
+      <ion-label style="font-size: 16px;">Data da compra</ion-label>
+      <ion-label style="color: #999999; float: right; font-size: 16px;">{{investiment.purchaseDate}}</ion-label>
     </ion-item>
-    <ion-item no-lines text-wrap>
+    <ion-item no-lines text-wrap (click)="doPromptExpirationDate()">
       <ion-icon item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Vencimento  </ion-label>
-      <ion-input type="date" [(ngModel)]="investiment.expirationDate"></ion-input>
+      <ion-label style="font-size: 16px;">Vencimento</ion-label>
+      <ion-label style="color: #999999; float: right;font-size: 16px;">{{investiment.expirationDate}}</ion-label>
     </ion-item>
     <hr/>
-    <ion-item no-lines text-wrap>
+    <ion-item no-lines text-wrap (click)="doPromptAdministrationFee()">
       <ion-icon name="swap" item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Taxa administração  </ion-label>
-      <ion-input type="tel" [(ngModel)]="investiment.administrationFee"></ion-input>
+      <ion-label style="font-size: 16px;">Taxa administração</ion-label>
+      <ion-label style="color: #999999; float: right;font-size: 16px;">{{investiment.administrationFee}}</ion-label>
     </ion-item>
-    <ion-item no-lines text-wrap>
+    <ion-item no-lines text-wrap (click)="doPromptPurchaseRate()">
       <ion-icon item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Taxa compra  </ion-label>
-      <ion-input type="tel" [(ngModel)]="investiment.purchaseRate"></ion-input>
+      <ion-label style="font-size: 16px;">Taxa compra</ion-label>
+      <ion-label style="color: #999999; float: right;font-size: 16px;">{{investiment.purchaseRate}}</ion-label>
     </ion-item>
     <hr/>
-    <ion-item no-lines text-wrap>
+    <ion-item no-lines text-wrap (click)="doPromptValueTitle()">
       <ion-icon name="logo-usd" item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Valor do título  </ion-label>
-      <ion-input type="tel" [(ngModel)]="investiment.valueTitle"></ion-input>
+      <ion-label style="font-size: 16px;">Valor do título</ion-label>
+      <ion-label style="color: #999999; float: right;font-size: 16px;">{{investiment.valueTitle}}</ion-label>
     </ion-item>
     <ion-item no-lines text-wrap no-lines>
       <ion-icon item-left></ion-icon>
-      <ion-label style="font-size: 16px;">Valor investido  </ion-label>
-      <ion-input type="tel" [(ngModel)]="investiment.paid"></ion-input>
+      <ion-label style="color: #999999; font-size: 16px;">Valor investido</ion-label>
+      <ion-label style="color: #999999; float: right;font-size: 16px;">{{investiment.paid}}</ion-label>
     </ion-item>
     <ion-item no-lines text-wrap no-lines></ion-item>
+    <!-- <input currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/> -->
   </ion-list>
 </ion-content>

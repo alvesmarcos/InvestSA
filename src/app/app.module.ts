@@ -8,6 +8,8 @@ import { Network } from '@ionic-native/network';
 import { HttpModule } from '@angular/http';
 import { TextMaskModule } from 'angular2-text-mask';
 import { InputMask } from '../pages/attendance/masks';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+
 import { MarketService } from '../providers/market.service';
 
 import { MyApp } from './app.component';
@@ -65,6 +67,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     HttpModule,
+    CurrencyMaskModule,
     TextMaskModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
