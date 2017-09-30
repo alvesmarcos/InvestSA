@@ -51,15 +51,15 @@ export class PreviewInvestimentModal {
   presentConfirm(title, message, confirmHandler, cancelHandler) {
     let alert = this.alertCtrl.create({
       title: title,
-      message: 'Do you want to buy this book?',
+      message: message,
       buttons: [
         {
-          text: 'Cancelar',
+          text: 'Cancel',
           role: 'cancel',
           handler: cancelHandler
         },
         {
-          text: 'Confirmar',
+          text: 'Ok',
           handler: confirmHandler
         }
       ]

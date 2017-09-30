@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="theme">
+    <button ion-button  menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vídeos</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="showAlert()">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+  <div *ngFor="let myVid of myVideos">
+    <ion-card>
+      <img [src]="myVid.wallpaper"/>
+      <ion-card-header text-wrap>{{myVid.title}}</ion-card-header>
+      <ion-card-content>
+        <p>{{myVid.description}}</p>
+      </ion-card-content>
+
+      <ion-row no-padding>
+        <ion-col text-left>
+          <a [href]="myVid.url">
+            <button ion-button clear small color="accent" icon-start>
+              <ion-icon name='play' padding-right></ion-icon>
+              Assistir
+            </button>
+          </a>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small color="accent" icon-start (click)="regularShare(myVid)">
+            <ion-icon name='share-alt' padding-right></ion-icon>
+            Compartilhar
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </div>
+</ion-content>

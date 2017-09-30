@@ -11,6 +11,7 @@ import { AttendancePage } from '../pages/attendance/attendance';
 import { About } from '../pages/about/about';
 import { MarketPage } from '../pages/market/market';
 import { InvestimentsPage } from '../pages/investiments/investiments';
+import { VideosPage } from '../pages/videos/videos';
 
 import { FirebaseService } from '../providers/firebase-service';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -55,8 +56,8 @@ export class MyApp {
       {title: 'Meus Investimentos', component: MyInvestimentsPage, icon: 'trending-up', active: false},
       {title: 'Investimentos', component: InvestimentsPage, icon: 'stats', active: false},
       {title: 'Expectativas do Mercado', component: MarketPage, icon: 'paper', active: false},
-      {title: 'Educacional', component: null, icon: 'bookmarks', active: false},
       {title: 'Análises', component: AnalysisPage, icon: 'analytics', active: false},
+      {title: 'Vídeos', component: VideosPage, icon: 'logo-youtube', active: false},
       {title: 'Atendimento', component: AttendancePage, icon: 'people', active: false},
       {title: 'Configurações', component: null, icon: 'settings', active: false},
       {title: 'Sobre', component: About, icon: 'information-circle', active: false}

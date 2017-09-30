@@ -11,6 +11,7 @@ import { InputMask } from '../pages/attendance/masks';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { MarketService } from '../providers/market.service';
+import { VideosService } from '../providers/videos.service';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -25,6 +26,7 @@ import { About } from '../pages/about/about';
 import { MarketPage } from '../pages/market/market';
 import { DetailsMarketModal } from '../pages/market/details/details';
 import { InvestimentsPage } from '../pages/investiments/investiments';
+import { VideosPage } from '../pages/videos/videos';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -33,9 +35,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseService } from '../providers/firebase-service';
 import { Facebook } from '@ionic-native/facebook';
-import { AnalysisModel } from '../model/analysis.model';
 import { AnalysisService } from '../providers/analysis.service';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAOeyA8mbblOh2AV_tZp7ykzoP26kjHry4",
@@ -60,6 +62,7 @@ export const firebaseConfig = {
     AddInvestimentModal,
     About,
     MarketPage,
+    VideosPage,
     DetailsMarketModal,
     InvestimentsPage,
     InputMask
@@ -88,13 +91,16 @@ export const firebaseConfig = {
     AddInvestimentModal,
     About,
     MarketPage,
+    VideosPage,
     DetailsMarketModal,
     InvestimentsPage
   ],
   providers: [
     MarketService,
+    VideosService,
     StatusBar,
     SplashScreen,
+    SocialSharing,
     FirebaseService,
     ConnectivityService,
     Network,
