@@ -27,6 +27,7 @@ import { MarketPage } from '../pages/market/market';
 import { DetailsMarketModal } from '../pages/market/details/details';
 import { InvestimentsPage } from '../pages/investiments/investiments';
 import { VideosPage } from '../pages/videos/videos';
+import { DetailsAnalysis } from '../pages/analysis/details/details';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -65,6 +66,7 @@ export const firebaseConfig = {
     VideosPage,
     DetailsMarketModal,
     InvestimentsPage,
+    DetailsAnalysis,
     InputMask
   ],
   imports: [
@@ -92,6 +94,7 @@ export const firebaseConfig = {
     About,
     MarketPage,
     VideosPage,
+    DetailsAnalysis,
     DetailsMarketModal,
     InvestimentsPage
   ],

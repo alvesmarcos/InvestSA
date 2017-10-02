@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
 import { AnalysisService } from '../../providers/analysis.service';
 import { AnalysisModel } from '../../model/analysis.model';
+import { DetailsAnalysis } from './details/details';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { AnalysisModel } from '../../model/analysis.model';
 export class AnalysisPage implements OnInit {
   analysis: AnalysisModel;
 
-  constructor(public navCtrl: NavController, public analysisService: AnalysisService, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public analysisService: AnalysisService, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.presentLoading();
   }
 
@@ -25,5 +26,11 @@ export class AnalysisPage implements OnInit {
       duration: 1500
     });
     loader.present();
+  }
+
+  showDetailsAnalysis(analys: AnalysisModel) {
+    let modal = this.modalCtrl.create(DetailsAnalysis, {title: analys.title, images: analys.images});
+    console.log('chamou ein');
+    modal.present();
   }
 }

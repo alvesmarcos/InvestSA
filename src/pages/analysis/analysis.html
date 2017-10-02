@@ -15,7 +15,7 @@
 <ion-content class="background">
   <!-- Atualizar cards dinâmicamente -->
   <div *ngFor="let item of analysis">
-    <ion-card>
+    <ion-card (click)="showDetailsAnalysis(item)">
       <img src= {{item.images[0]}}/>
       <ion-card-content>
         <ion-card-title>
