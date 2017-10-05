@@ -31,7 +31,7 @@
       <div *ngFor="let m of market">
         <ion-item no-lines (click)="showDetailsMarket(m)" text-wrap>
           <ion-label color="dark" padding-left item-left>
-            {{m.name}}
+            {{m.name + ' (' + m.metric + ')'}}
           </ion-label>
           <ion-label padding-left color="dark">
             <ion-icon name="" padding-right></ion-icon>
