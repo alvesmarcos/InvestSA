@@ -14,8 +14,29 @@ export class HomePage implements AfterViewInit {
 	labels : any;
 	label : String;
 	data : any;
+	ano: string;
+	dateHora: string;
+  dateMinutos: string;
+  dateSegundos: string;
+
 
 	constructor(public navCtrl: NavController, public firebaseService: FirebaseService) {
+		let date = new Date();
+    this.dateHora = date.getHours().toString();
+    this.dateMinutos = date.getMinutes().toString();
+		this.dateSegundos = date.getSeconds().toString();
+	
+    if(date.getSeconds() < 10) {
+      this.dateSegundos = '0' + this.dateSegundos;
+    }
+    if(date.getMinutes() < 10) {
+      this.dateMinutos = '0' + this.dateMinutos;
+    }
+    if(date.getHours() < 10) {
+      this.dateHora = '0' + this.dateHora;
+		}
+		this.ano = "2017";
+		
 	}
 
 	ionViewDidLoad(){}

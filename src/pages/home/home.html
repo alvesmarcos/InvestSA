@@ -13,77 +13,101 @@
 </ion-header>
 
 <ion-content class="background">
-  <ion-card>
-    <ion-card-header>Expectativas do Mercado</ion-card-header>
-    <ion-card-content no-padding>
-    <ion-list>
-      <ion-item no-lines text-wrap>
-        <ion-label item-left>
-          <ion-icon name="swap" padding-right></ion-icon>
-           Índice
-        </ion-label>
-        <ion-label>
-          <ion-icon name="refresh" padding-right></ion-icon>
-          Semana Atual
-        </ion-label>
-      </ion-item>
-       <hr/>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          <ion-icon name="" padding-right></ion-icon>
-          IPCA (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'0,32'}}
-          <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-       <hr/>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          <ion-icon name="" padding-right></ion-icon>
-          Selic (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'8,50'}}
-          <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-       <hr/>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          <ion-icon name="" padding-right></ion-icon>
-          PIB (%)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'0,49'}}
-          <ion-icon name="remove" color="dark" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-      <hr/>
-      <ion-item no-lines text-wrap>
-        <ion-label color="dark" padding-left item-left>
-          <ion-icon name="" padding-right></ion-icon>
-          Câmbio (R$/US$)
-        </ion-label>
-        <ion-label padding-left color="dark">
-          <ion-icon name="" padding-right></ion-icon>
-          {{'3,25'}}
-          <ion-icon name="arrow-round-down" color="danger" padding-left></ion-icon>
-        </ion-label>
-      </ion-item>
-       <hr/>
-    </ion-list>
-    </ion-card-content>
-  </ion-card>
+  <div class="info-content">
+    <img src="assets/image/logoSA.png" />
+  </div>
 
   <ion-card>
-    <ion-card-header>Rentabilidade Anual</ion-card-header>
-    <ion-card-content>
-      <canvas #barCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
+      <ion-item style="height: 90px;" no-padding text-wrap>
+        <ion-icon style="color:#757575; font-size: 64px;" name="paper" padding-left item-left></ion-icon>
+        <h6>{{'Última atualização '+dateHora +':'+ dateMinutos + ':'+ dateSegundos}}</h6>
+        <h2>{{'Expecativas do Mercado'}}</h2>
+      </ion-item>
+      <ion-card-content  no-padding>
+      <ion-list>
+          <ion-item style="background-color: #757575" no-lines text-wrap>
+              <ion-label style="color: #fff" item-left>
+                <ion-icon style="color: #fff" name="swap" padding-right></ion-icon>
+                 Índice
+              </ion-label>
+              <ion-label style="color: #fff">
+                <ion-icon style="color: #fff" name="refresh" padding-right></ion-icon>
+                Semana Atual
+              </ion-label>
+            </ion-item>
+        <ion-item no-lines text-wrap>
+            <ion-label color="dark" padding-left item-left>
+              <ion-icon name="" padding-right></ion-icon>
+              IPCA (%)
+            </ion-label>
+            <ion-label padding-left color="dark">
+              <ion-icon name="" padding-right></ion-icon>
+              {{'0,32'}}
+              <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
+            </ion-label>
+          </ion-item>
+           <hr/>
+          <ion-item no-lines text-wrap>
+            <ion-label color="dark" padding-left item-left>
+              <ion-icon name="" padding-right></ion-icon>
+              Selic (%)
+            </ion-label>
+            <ion-label padding-left color="dark">
+              <ion-icon name="" padding-right></ion-icon>
+              {{'8,50'}}
+              <ion-icon name="arrow-round-up" color="free" padding-left></ion-icon>
+            </ion-label>
+          </ion-item>
+           <hr/>
+          <ion-item no-lines text-wrap>
+            <ion-label color="dark" padding-left item-left>
+              <ion-icon name="" padding-right></ion-icon>
+              PIB (%)
+            </ion-label>
+            <ion-label padding-left color="dark">
+              <ion-icon name="" padding-right></ion-icon>
+              {{'0,49'}}
+              <ion-icon name="remove" color="dark" padding-left></ion-icon>
+            </ion-label>
+          </ion-item>
+          <hr/>
+          <ion-item no-lines text-wrap>
+            <ion-label color="dark" padding-left item-left>
+              <ion-icon name="" padding-right></ion-icon>
+              Câmbio (R$/US$)
+            </ion-label>
+            <ion-label padding-left color="dark">
+              <ion-icon name="" padding-right></ion-icon>
+              {{'3,25'}}
+              <ion-icon name="arrow-round-down" color="danger" padding-left></ion-icon>
+            </ion-label>
+          </ion-item>
+           <hr/>
+        <!-- <div *ngFor="let t of dados[indexAno.get(ano)].topVinte">
+          <div *ngIf="t.valor!=0">
+            <ion-item no-lines text-wrap>
+              <ion-label color="dark" padding-left item-left>
+                {{ 't.favorecido ' }}
+              </ion-label>
+              <ion-label padding-left color="dark">
+                {{ '' }}
+              </ion-label>
+            </ion-item>
+            <hr/>
+          </div>
+        </div> -->
+      </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-item no-lines>
+        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-label color="dark" style="font-size: 16px;">Rentabilidade Anual</ion-label>
+          <ion-select color="dark" [(ngModel)]="ano" selected>
+            <ion-option value="2017">2017</ion-option>
+          </ion-select>
+        </ion-item>
+    <div padding>
+    <canvas #barCanvas></canvas>
+  </div>
+  <p padding>Aplicativo fase alpha</p>
 </ion-content>
