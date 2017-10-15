@@ -2,7 +2,7 @@ import { Investiment } from './../model/investiment';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 // import * as firebase from 'firebase/app';
 import firebase from 'firebase';
@@ -14,7 +14,7 @@ import { Facebook } from '@ionic-native/facebook';
 @Injectable()
 export class FirebaseService {
 
-  users:FirebaseListObservable<any>;
+  users:AngularFireList<any>;
   usersRef: any;
   userProfile: any = null;
 
@@ -88,7 +88,7 @@ export class FirebaseService {
       .then(result => {
         //sucesso! Registrar usuario no RealTimeDB
         console.log("User registered: "+user);
-        this.users.push(user).then(result => console.log("Salvo com sucesso no DB")).catch(error => console.log(error));
+        this.users.push(user);
         isSuccess(true, result);
       })
       .catch(error => {
